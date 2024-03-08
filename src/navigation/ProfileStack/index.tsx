@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+import { ProfileStackParamList } from '@/types/navigation';
+
+const Stack = createNativeStackNavigator<ProfileStackParamList>();
 
 import ProfileScreen from '@/screens/ProfileScreen';
 import MovieDetailScreen from '@/screens/MovieDetailScreen';

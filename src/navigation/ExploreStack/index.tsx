@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
-
+import { ExploreStackParamList } from '@/types/navigation';
 import ExploreScreen from '@/screens/ExploreScreen';
 import MovieDetailScreen from '@/screens/MovieDetailScreen';
 
+const Stack = createNativeStackNavigator<ExploreStackParamList>();
 const ExploreStack = () => {
   return (
     <Stack.Navigator>

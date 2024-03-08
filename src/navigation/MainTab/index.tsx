@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const Tab = createBottomTabNavigator();
-
+import { MainTabParamList } from "@/types/navigation";
 import HomeStack from "../HomeStack";
 import ExploreStack from "../ExploreStack";
 import ProfileStack from "../ProfileStack";
+
+const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const MainTab = () => {
   return (

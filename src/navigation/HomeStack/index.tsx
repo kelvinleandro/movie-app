@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
-
+import { HomeStackParamList } from '@/types/navigation';
 import HomeScreen from '@/screens/HomeScreen';
 import MovieDetailScreen from '@/screens/MovieDetailScreen';
+
+const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 const HomeStack = () => {
   return (
