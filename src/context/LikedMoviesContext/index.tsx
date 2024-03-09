@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode } from "react";
 
 interface LikedMoviesContextType {
   likedMovies: number[];
@@ -12,7 +12,9 @@ export const LikedMoviesProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleLike = (movieId: number) => {
     setLikedMovies((currentLikes) =>
-      currentLikes.includes(movieId) ? currentLikes.filter(id => id !== movieId) : [...currentLikes, movieId]
+      currentLikes.includes(movieId)
+        ? currentLikes.filter((id) => id !== movieId)
+        : [...currentLikes, movieId]
     );
   };
 

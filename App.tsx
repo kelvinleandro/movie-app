@@ -1,11 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from "@react-navigation/native";
 
-import MainTab from '@/navigation/MainTab';
+import MainTab from "@/navigation/MainTab";
+import { LikedMoviesProvider } from "@/context/LikedMoviesContext";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MainTab />
-    </NavigationContainer>
+    <LikedMoviesProvider>
+      <NavigationContainer>
+        <MainTab />
+      </NavigationContainer>
+    </LikedMoviesProvider>
   );
 }
