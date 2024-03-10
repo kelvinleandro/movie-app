@@ -1,19 +1,23 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { ProfileStackParamList } from '@/types/navigation';
+import { ProfileStackParamList } from "@/types/navigation";
 
 const Stack = createNativeStackNavigator<ProfileStackParamList>();
 
-import ProfileScreen from '@/screens/ProfileScreen';
-import MovieDetailScreen from '@/screens/MovieDetailScreen';
+import ProfileScreen from "@/screens/ProfileScreen";
+import MovieDetailScreen from "@/screens/MovieDetailScreen";
 
 const ProfileStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
     </Stack.Navigator>
   );
-}
+};
 
-export default ProfileStack
+export default ProfileStack;

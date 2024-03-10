@@ -1,7 +1,7 @@
 const COLORS = {
-  darkBlue: "#070820",
-  lightBlue: "#2FAFC0",
-  text: "#fff"
-}
+  primary: "#070820",
+  secondary: "#2FAFC0",
+  text: "#fff",
+};
 
-export default COLORS
+export default COLORS;
