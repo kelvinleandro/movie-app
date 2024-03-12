@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 function useApi<T>(apiFunc: (...args: any[]) => Promise<T>, ...params: any[]): {
   data: T | null;
@@ -9,23 +9,23 @@ function useApi<T>(apiFunc: (...args: any[]) => Promise<T>, ...params: any[]): {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const result = await apiFunc(...params);
-        setData(result);
-        setError(null);
-      } catch (error) {
-        setError(error as Error);
-        setData(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const result = await apiFunc(...params);
+      setData(result);
+      setError(null);
+    } catch (error) {
+      setError(error as Error);
+      setData(null);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [apiFunc, ...params]); 
 
+  useEffect(() => {
     fetchData();
-  }, [apiFunc, params]);
+  }, [fetchData]);
 
   return { data, isLoading, error };
 }

@@ -12,39 +12,41 @@ import {
 import FetchingError from "@/components/UI/FetchingError";
 
 const HomeScreen = () => {
-  // const { data: trendingMovies } = useApi(fetchTrendingMovies);
-  // const { data: upcomingMovies } = useApi(fetchUpcomingMovies);
-  // const { data: popularMovies } = useApi(fetchPopularMovies);
+  const { data: trendingMovies, error: trendingError } =
+    useApi(fetchTrendingMovies);
+  const { data: upcomingMovies, error: upcomingError } =
+    useApi(fetchUpcomingMovies);
+  const { data: popularMovies, error: popularError } =
+    useApi(fetchPopularMovies);
 
-  if (true) {
-    return (<FetchingError />);
+  if (trendingError || upcomingError || popularError) {
+    return <FetchingError />;
   }
 
-  // return (
-  //   <ScrollView
-  //     style={{
-  //       flex: 1,
-  //       paddingTop: Constants.statusBarHeight,
-  //       paddingHorizontal: 8,
-  //     }}
-  //   >
-  //     <Text style={{ color: "white" }}>{trendingMovies?.length}</Text>
-  //     <HorizontalList.Container>
-  //       <HorizontalList.Label>Trending</HorizontalList.Label>
-  //       <HorizontalList.List data={trendingMovies} />
-  //     </HorizontalList.Container>
+  return (
+    <ScrollView
+      style={{
+        flex: 1,
+        paddingTop: Constants.statusBarHeight,
+        paddingHorizontal: 8,
+      }}
+    >
+      <HorizontalList.Container>
+        <HorizontalList.Label>Trending</HorizontalList.Label>
+        <HorizontalList.List data={trendingMovies} />
+      </HorizontalList.Container>
 
-  //     <HorizontalList.Container>
-  //       <HorizontalList.Label>Upcoming</HorizontalList.Label>
-  //       <HorizontalList.List data={upcomingMovies} />
-  //     </HorizontalList.Container>
+      <HorizontalList.Container>
+        <HorizontalList.Label>Upcoming</HorizontalList.Label>
+        <HorizontalList.List data={upcomingMovies} />
+      </HorizontalList.Container>
 
-  //     <HorizontalList.Container>
-  //       <HorizontalList.Label>Popular</HorizontalList.Label>
-  //       <HorizontalList.List data={popularMovies} />
-  //     </HorizontalList.Container>
-  //   </ScrollView>
-  // );
+      <HorizontalList.Container>
+        <HorizontalList.Label>Popular</HorizontalList.Label>
+        <HorizontalList.List data={popularMovies} />
+      </HorizontalList.Container>
+    </ScrollView>
+  );
 };
 
 export default HomeScreen;

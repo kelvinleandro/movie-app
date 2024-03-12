@@ -13,7 +13,7 @@ const Container = styled.View`
 `;
 
 const Label = styled.Text`
-  color: "rgb(255,255,255)";
+  color: ${COLORS.text};
   font-weight: bold;
   font-size: 22px;
   text-transform: uppercase;
@@ -30,6 +30,7 @@ const ListItem = ({ item }: { item: Movie | CastMember }) => {
       }}
       style={{
         width: Dimensions.get("window").width / 3,
+        height: Dimensions.get("window").width * 4 / 9,
         borderRadius: 14,
         marginHorizontal: 6,
       }}
@@ -46,6 +47,7 @@ const List = ({ data }: { data: (Movie | CastMember)[] | null }) => {
       )}
       keyExtractor={(item) => `${item.id}`}
       horizontal={true}
+      showsHorizontalScrollIndicator={false}
     />
   );
 };
