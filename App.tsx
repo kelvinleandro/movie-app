@@ -2,7 +2,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
 import MainTab from "@/navigation/MainTab";
-import { LikedMoviesProvider } from "@/context/LikedMoviesContext";
+import { FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
 import COLORS from "@/constants/colors";
 
 const MyTheme = {
@@ -10,17 +10,17 @@ const MyTheme = {
   colors: {
     ...DefaultTheme.colors,
     background: COLORS.primary,
-    text: COLORS.text
+    text: COLORS.text,
   },
 };
 
 export default function App() {
   return (
-    <LikedMoviesProvider >
+    <FavoriteMoviesProvider>
       <StatusBar style="light" />
       <NavigationContainer theme={MyTheme}>
         <MainTab />
       </NavigationContainer>
-    </LikedMoviesProvider>
+    </FavoriteMoviesProvider>
   );
 }
