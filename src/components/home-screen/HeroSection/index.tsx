@@ -1,8 +1,10 @@
 import { Dimensions } from "react-native";
 import React from "react";
+import styled from "styled-components/native";
+import { LinearGradient } from 'expo-linear-gradient';
+
 import useApi from "@/hooks/useApi";
 import { fetchCategories, fetchRandomPopularMovie } from "@/api/helper";
-import styled from "styled-components/native";
 import { getTmdbImage } from "@/utils";
 import COLORS from "@/constants/colors";
 
@@ -18,6 +20,12 @@ const HeroSection = () => {
         }}
         resizeMode="cover"
       >
+        <GradientOverlay
+          colors={['transparent', 'rgba(0,0,0,0.7)']} // Gradient from transparent to black
+          locations={[0.6, 0.85]}
+          start={{x: 0, y: 0}} // Top
+          end={{x: 0, y: 1}} // Bottom
+        />
         <Title>{movie?.title}</Title>
       </Background>
     </Container>
@@ -34,6 +42,14 @@ const Container = styled.View`
   border: 4px solid ${COLORS.secondary};
 `;
 
+const Background = styled.ImageBackground`
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  width: "100%";
+  height: "100%";
+`;
+
 const Title = styled.Text`
   color: ${COLORS.text};
   font-size: 22px;
@@ -42,10 +58,10 @@ const Title = styled.Text`
   font-weight: 500;
 `;
 
-const Background = styled.ImageBackground`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-  width: "100%";
-  height: "100%";
+const GradientOverlay = styled(LinearGradient)`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `;
