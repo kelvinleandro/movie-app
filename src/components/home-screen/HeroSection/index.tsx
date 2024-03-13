@@ -28,8 +28,10 @@ export default HeroSection;
 
 const Container = styled.View`
   width: ${Dimensions.get("window").width * 0.8}px;
-  height: ${Dimensions.get("window").width * 0.8 * 5 / 4}px;
-  margin-top: 16px;
+  height: ${Dimensions.get("window").width * 0.8 * 3 / 2}px;
+  margin: 16px 0px;
+  border-radius: 10px;
+  border: 4px solid ${COLORS.secondary};
 `;
 
 const Title = styled.Text`
@@ -44,4 +46,6 @@ const Background = styled.ImageBackground`
   flex: 1;
   justify-content: flex-end;
   align-items: center;
+  width: "100%";
+  height: "100%";
 `;

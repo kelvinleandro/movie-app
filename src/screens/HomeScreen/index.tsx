@@ -31,9 +31,10 @@ const HomeScreen = () => {
     <ScrollView
       style={{
         flex: 1,
-        marginTop: Constants.statusBarHeight,
+        marginTop: Constants.statusBarHeight * 1.75,
         paddingBottom: 8,
         paddingHorizontal: 8,
+        marginBottom: 8
       }}
       contentContainerStyle={{
         alignItems: "center",
