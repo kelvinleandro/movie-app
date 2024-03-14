@@ -1,6 +1,6 @@
 TODO:
 - [X] Lists in Home Screen
-- [ ] Main banner (HomeScreen)
+- [X] Main banner (HomeScreen)
 - [ ] MovieDetail Screen
 - [ ] FullCast Screen
 - [ ] Profile Screen
