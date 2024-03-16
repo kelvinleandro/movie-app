@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Pressable } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,30 +9,32 @@ import { getTmdbImage } from "@/utils";
 import COLORS from "@/constants/colors";
 import GenreList from "../GenreList";
 
-const HeroSection = () => {
+const HeroSection = ({ onPress }: { onPress?: (id: number) => void }) => {
   const { data: movie } = useApi(fetchRandomPopularMovie);
 
   return (
-    <Container>
-      <Background
-        source={{
-          uri: getTmdbImage(movie?.poster_path, "w500"),
-        }}
-        resizeMode="cover"
-      >
-        <GradientOverlay
-          colors={["transparent", "rgba(0,0,0,0.7)"]}
-          locations={[0.6, 0.85]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
+    <Pressable onPress={onPress?.bind(this, movie?.id as number)}>
+      <Container>
+        <Background
+          source={{
+            uri: getTmdbImage(movie?.poster_path, "w500"),
+          }}
+          resizeMode="cover"
         >
-          <ContentContainer>
-            <GenreList list={movie?.genre_ids as number[]} />
-            <Title>{movie?.title}</Title>
-          </ContentContainer>
-        </GradientOverlay>
-      </Background>
-    </Container>
+          <GradientOverlay
+            colors={["transparent", "rgba(0,0,0,0.7)"]}
+            locations={[0.6, 0.85]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          >
+            <ContentContainer>
+              <GenreList list={movie?.genre_ids as number[]} />
+              <Title>{movie?.title}</Title>
+            </ContentContainer>
+          </GradientOverlay>
+        </Background>
+      </Container>
+    </Pressable>
   );
 };
 

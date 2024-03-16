@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const { data: popularMovies } = useApi(fetchPopularMovies);
   const { data: nowPlayingMovies } = useApi(fetchNowPlayingMovies);
 
-  const listItemHandler  = (id: number) => {
+  const itemClickHandler  = (id: number) => {
     navigation.navigate("MovieDetail", {id: id});
   }
 
@@ -48,26 +48,26 @@ const HomeScreen = ({ navigation }: Props) => {
         alignItems: "center",
       }}
     >
-      <HeroSection />
+      {/* <HeroSection onPress={itemClickHandler} /> */}
 
       <HorizontalList.Container >
         <HorizontalList.Label>Trending</HorizontalList.Label>
-        <HorizontalList.List data={trendingMovies} itemClickHandler={listItemHandler} />
+        <HorizontalList.List data={trendingMovies} itemClickHandler={itemClickHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Now Playing</HorizontalList.Label>
-        <HorizontalList.List data={nowPlayingMovies} itemClickHandler={listItemHandler} />
+        <HorizontalList.List data={nowPlayingMovies} itemClickHandler={itemClickHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Upcoming</HorizontalList.Label>
-        <HorizontalList.List data={upcomingMovies} itemClickHandler={listItemHandler} />
+        <HorizontalList.List data={upcomingMovies} itemClickHandler={itemClickHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Popular</HorizontalList.Label>
-        <HorizontalList.List data={popularMovies} itemClickHandler={listItemHandler} />
+        <HorizontalList.List data={popularMovies} itemClickHandler={itemClickHandler} />
       </HorizontalList.Container>
     </ScrollView>
   );

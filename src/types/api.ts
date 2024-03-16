@@ -9,7 +9,7 @@ interface Movie {
   overview: string;
   poster_path: string;
   release_date: string;
-  runtine: number;
+  runtime: number;
   vote_average: number;
   vote_count: number;
   genre_ids: number[];
