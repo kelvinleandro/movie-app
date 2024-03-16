@@ -6,17 +6,17 @@ import {
 } from "./screens";
 
 export type HomeStackParamList = {
-  Home: HomeScreenProps;
+  Home: undefined;
   MovieDetail: MovieDetailScreenProps;
 };
 
 export type ExploreStackParamList = {
-  Explore: ExploreScreenProps;
+  Explore: undefined;
   MovieDetail: MovieDetailScreenProps;
 };
 
 export type ProfileStackParamList = {
-  Profile: ProfileScreenProps;
+  Profile: undefined;
   MovieDetail: MovieDetailScreenProps;
 };
 

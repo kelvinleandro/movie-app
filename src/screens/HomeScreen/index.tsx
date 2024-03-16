@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView } from "react-native";
 import Constants from "expo-constants";
 
 import { HorizontalList } from "@/components/UI/HorizontalList";
@@ -11,12 +11,20 @@ import {
 } from "@/api/helper";
 import FetchingError from "@/components/UI/FetchingError";
 import HeroSection from "@/components/home-screen/HeroSection";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { HomeStackParamList } from "@/types/navigation";
 
-const HomeScreen = () => {
+type Props = NativeStackScreenProps<HomeStackParamList, 'Home'>;
+
+const HomeScreen = ({ navigation }: Props) => {
   const { data: trendingMovies } = useApi(fetchTrendingMovies);
   const { data: upcomingMovies } = useApi(fetchUpcomingMovies);
   const { data: popularMovies } = useApi(fetchPopularMovies);
   const { data: nowPlayingMovies } = useApi(fetchNowPlayingMovies);
+
+  const listItemHandler  = (id: number) => {
+    navigation.navigate("MovieDetail", {id: id});
+  }
 
   if (
     !trendingMovies ||
@@ -42,24 +50,24 @@ const HomeScreen = () => {
     >
       <HeroSection />
 
-      <HorizontalList.Container>
+      <HorizontalList.Container >
         <HorizontalList.Label>Trending</HorizontalList.Label>
-        <HorizontalList.List data={trendingMovies} />
+        <HorizontalList.List data={trendingMovies} itemClickHandler={listItemHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Now Playing</HorizontalList.Label>
-        <HorizontalList.List data={nowPlayingMovies} />
+        <HorizontalList.List data={nowPlayingMovies} itemClickHandler={listItemHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Upcoming</HorizontalList.Label>
-        <HorizontalList.List data={upcomingMovies} />
+        <HorizontalList.List data={upcomingMovies} itemClickHandler={listItemHandler} />
       </HorizontalList.Container>
 
       <HorizontalList.Container>
         <HorizontalList.Label>Popular</HorizontalList.Label>
-        <HorizontalList.List data={popularMovies} />
+        <HorizontalList.List data={popularMovies} itemClickHandler={listItemHandler} />
       </HorizontalList.Container>
     </ScrollView>
   );

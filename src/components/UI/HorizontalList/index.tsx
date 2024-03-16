@@ -1,4 +1,4 @@
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
@@ -20,31 +20,43 @@ const Label = styled.Text`
   margin-bottom: 12px;
 `;
 
-const ListItem = ({ item }: { item: Movie | CastMember }) => {
+const ListItem = ({
+  item,
+  itemClickHandler,
+}: {
+  item: Movie | CastMember;
+  itemClickHandler?: (id: number) => void;
+}) => {
   const uri = "poster_path" in item ? item.poster_path : item.profile_path;
   return (
-    <Image
-      resizeMode="contain"
-      source={{
-        uri: getTmdbImage(uri, "w500"),
-      }}
-      style={{
-        width: Dimensions.get("window").width / 3,
-        height: Dimensions.get("window").width * 4 / 9,
-        borderRadius: 14,
-        marginHorizontal: 6,
-      }}
-    />
+    <TouchableOpacity activeOpacity={0.8} onPress={itemClickHandler?.bind(this, item.id)}>
+      <Image
+        resizeMode="contain"
+        source={{
+          uri: getTmdbImage(uri, "w500"),
+        }}
+        style={{
+          width: Dimensions.get("window").width / 3,
+          height: (Dimensions.get("window").width * 4) / 9,
+          borderRadius: 14,
+          marginHorizontal: 6,
+        }}
+      />
+    </TouchableOpacity>
   );
 };
 
-const List = ({ data }: { data: (Movie | CastMember)[] | null }) => {
+const List = ({
+  data,
+  itemClickHandler,
+}: {
+  data: (Movie | CastMember)[] | null;
+  itemClickHandler?: (id: number) => void;
+}) => {
   return (
     <FlatList
       data={data}
-      renderItem={({ item }) => (
-        <ListItem item={item} />
-      )}
+      renderItem={({ item }) => <ListItem item={item} itemClickHandler={itemClickHandler} />}
       keyExtractor={(item) => `${item.id}`}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
