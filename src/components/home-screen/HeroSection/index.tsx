@@ -42,8 +42,9 @@ const Container = styled.View`
   width: ${Dimensions.get("window").width * 0.8}px;
   height: ${(Dimensions.get("window").width * 0.8 * 3) / 2}px;
   margin: 16px 0px;
-  border-radius: 10px;
+  border-radius: ${Dimensions.get("window").width * 0.04}px;
   border: 4px solid ${COLORS.secondary};
+  overflow: hidden;
 `;
 
 const Background = styled.ImageBackground`
