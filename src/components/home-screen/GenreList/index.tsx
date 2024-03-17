@@ -22,7 +22,6 @@ const GenreList = ({ list }: { list: number[] }) => {
         marginHorizontal: 6,
         justifyContent: "center",
         alignItems: "center",
-        // height: 50,
         borderRadius: 15,
       }}
     >

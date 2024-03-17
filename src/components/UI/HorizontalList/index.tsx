@@ -1,4 +1,11 @@
-import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
@@ -20,6 +27,21 @@ const Label = styled.Text`
   margin-bottom: 12px;
 `;
 
+const Name = styled.Text`
+  color: ${COLORS.text};
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+`;
+
+const Character = styled.Text`
+  color: ${COLORS.text};
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+`;
+
 const ListItem = ({
   item,
   itemClickHandler,
@@ -29,19 +51,43 @@ const ListItem = ({
 }) => {
   const uri = "poster_path" in item ? item.poster_path : item.profile_path;
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={itemClickHandler?.bind(this, item.id)}>
-      <Image
-        resizeMode="contain"
-        source={{
-          uri: getTmdbImage(uri, "w500"),
-        }}
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={itemClickHandler?.bind(this, item.id)}
+    >
+      <View
         style={{
+          overflow: "hidden",
           width: Dimensions.get("window").width / 3,
-          height: (Dimensions.get("window").width * 4) / 9,
-          borderRadius: 14,
-          marginHorizontal: 6,
         }}
-      />
+      >
+        <View
+          style={{
+            width: Dimensions.get("window").width / 3,
+            height: (Dimensions.get("window").width * 4) / 9,
+            borderRadius: Dimensions.get("window").width * 0.05,
+            marginHorizontal: 6,
+            overflow: "hidden"
+          }}
+        >
+          <Image
+            resizeMode="contain"
+            source={{
+              uri: getTmdbImage(uri, "w500"),
+            }}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </View>
+        {"cast_id" in item && (
+          <>
+            <Name>{item.name}</Name>
+            <Character>{item.character}</Character>
+          </>
+        )}
+      </View>
     </TouchableOpacity>
   );
 };
@@ -56,7 +102,9 @@ const List = ({
   return (
     <FlatList
       data={data}
-      renderItem={({ item }) => <ListItem item={item} itemClickHandler={itemClickHandler} />}
+      renderItem={({ item }) => (
+        <ListItem item={item} itemClickHandler={itemClickHandler} />
+      )}
       keyExtractor={(item) => `${item.id}`}
       horizontal={true}
       showsHorizontalScrollIndicator={false}

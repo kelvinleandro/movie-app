@@ -28,7 +28,7 @@ const HeroSection = ({ onPress }: { onPress?: (id: number) => void }) => {
             end={{ x: 0, y: 1 }}
           >
             <ContentContainer>
-              <GenreList list={movie?.genre_ids as number[]} />
+              {/* <GenreList list={movie?.genre_ids as number[]} /> */}
               <Title>{movie?.title}</Title>
             </ContentContainer>
           </GradientOverlay>
