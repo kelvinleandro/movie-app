@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
-import Constants from "expo-constants";
 import { Dimensions, Image } from "react-native";
 
 import COLORS from "@/constants/colors";
-
-const STATUS_BAR_HEIGHT = Constants.statusBarHeight;
 
 const FetchingError = () => {
   return (

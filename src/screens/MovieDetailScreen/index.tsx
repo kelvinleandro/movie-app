@@ -1,9 +1,6 @@
-import { Dimensions } from "react-native";
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
-import Constants from "expo-constants";
 
 import useApi from "@/hooks/useApi";
 import { fetchMovie, fetchMovieCast, fetchSimilarMovies } from "@/api/helper";
@@ -16,6 +13,17 @@ import { formatRuntime, getTmdbImage } from "@/utils";
 import COLORS from "@/constants/colors";
 import { HorizontalList } from "@/components/UI/HorizontalList";
 import { CastMember } from "@/types/api";
+import {
+  Container,
+  PosterWrapper,
+  Poster,
+  Title,
+  Synopsis,
+  InfoWrapper,
+  InfoText,
+  VoteWrapper,
+  VoteText,
+} from "./styles";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -30,7 +38,6 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
 
   return (
     <Container>
-      
       <PosterWrapper>
         <Poster
           source={{
@@ -44,7 +51,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
 
       <InfoWrapper>
         <InfoText>{movie?.release_date.slice(0, 4)}</InfoText>
-        
+
         <InfoText>{formatRuntime(movie?.runtime)}</InfoText>
 
         <VoteWrapper>
@@ -74,67 +81,3 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
 };
 
 export default MovieDetailScreen;
-
-const Container = styled.ScrollView.attrs(() => ({
-  contentContainerStyle: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-  alwaysBounceVertical: false,
-  bounces: false,
-  overScrollMode: 'never'
-}))`
-  flex: 1;
-  padding: 0px 8px 8px;
-  margin-top: ${Constants.statusBarHeight * 1.75}px;
-  margin-bottom: 8px;
-`;
-
-const PosterWrapper = styled.View`
-  width: ${Dimensions.get("window").width}px;
-  height: ${Dimensions.get("window").width * 4/3}px;
-`;
-
-const Poster = styled.Image`
-  width: 100%;
-  height: 100%;
-`;
-
-const Title = styled.Text`
-  color: ${COLORS.secondary};
-  font-weight: bold;
-  font-size: 28px;
-  text-align: left;
-`;
-
-const Synopsis = styled.Text`
-  color: ${COLORS.text};
-  font-weight: 500;
-  font-size: 16px;
-  text-align: justify;
-  line-height: 20px;
-`;
-
-const InfoWrapper = styled.View`
-  flex-direction: row;
-  gap: 12px;
-  margin: 6px 0px;
-`;
-
-const InfoText = styled.Text`
-  color: ${COLORS.text};
-  font-weight: 500;
-  font-size: 20px;
-`;
-
-const VoteWrapper = styled.View`
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-`;
-
-const VoteText = styled.Text`
-  color: ${COLORS.text};
-  font-weight: 600;
-  font-size: 20px;
-`;
