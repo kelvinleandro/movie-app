@@ -1,4 +1,4 @@
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import { Button, FlatList, Image, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Dimensions } from "react-native";
 
@@ -6,6 +6,16 @@ import { Movie, CastMember } from "@/types/api";
 import { getTmdbImage } from "@/utils";
 
 import { Character, Container, Label, Name } from "./styles";
+
+interface HorizontalListProps {
+  data: (Movie | CastMember)[] | null;
+  label: string;
+  action?: {
+    text: string;
+    handler: () => void;
+  };
+  itemClickHandler?: (id: number) => void;
+}
 
 const ListItem = ({
   item,
@@ -57,28 +67,35 @@ const ListItem = ({
   );
 };
 
-const List = ({
+const HorizontalList = ({
   data,
+  label,
+  action,
   itemClickHandler,
-}: {
-  data: (Movie | CastMember)[] | null;
-  itemClickHandler?: (id: number) => void;
-}) => {
+}: HorizontalListProps) => {
   return (
-    <FlatList
-      data={data}
-      renderItem={({ item }) => (
-        <ListItem item={item} itemClickHandler={itemClickHandler} />
-      )}
-      keyExtractor={(item) => `${item.id}`}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    />
+    <Container>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Label>{label}</Label>
+        {action && <Button onPress={action.handler} title={action.text} />}
+      </View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <ListItem item={item} itemClickHandler={itemClickHandler} />
+        )}
+        keyExtractor={(item) => `${item.id}`}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
+    </Container>
   );
 };
 
-export const HorizontalList = {
-  Container,
-  Label,
-  List,
-};
+export default HorizontalList;

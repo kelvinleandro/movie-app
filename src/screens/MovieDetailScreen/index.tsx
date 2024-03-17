@@ -11,7 +11,7 @@ import {
 } from "@/types/navigation";
 import { formatRuntime, getTmdbImage } from "@/utils";
 import COLORS from "@/constants/colors";
-import { HorizontalList } from "@/components/UI/HorizontalList";
+import HorizontalList from "@/components/UI/HorizontalList";
 import { CastMember } from "@/types/api";
 import {
   Container,
@@ -23,7 +23,7 @@ import {
   InfoText,
   VoteWrapper,
   VoteText,
-  DetailSection
+  DetailSection,
 } from "./styles";
 
 type Props = NativeStackScreenProps<
@@ -50,6 +50,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
 
       <DetailSection>
         <Title>{movie?.title}</Title>
+
         <InfoWrapper>
           <InfoText>{movie?.release_date.slice(0, 4)}</InfoText>
           <InfoText>{formatRuntime(movie?.runtime)}</InfoText>
@@ -58,20 +59,22 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
             <VoteText>{movie?.vote_average}/10</VoteText>
           </VoteWrapper>
         </InfoWrapper>
+
         <Synopsis>{movie?.overview}</Synopsis>
-        <HorizontalList.Container>
-          <HorizontalList.Label>Cast</HorizontalList.Label>
-          <HorizontalList.List data={cast?.slice(0, 10) as CastMember[]} />
-        </HorizontalList.Container>
-        <HorizontalList.Container>
-          <HorizontalList.Label>Similar Movies</HorizontalList.Label>
-          <HorizontalList.List
-            data={similar}
-            itemClickHandler={(id: number) => {
-              navigation.navigate("MovieDetail", { id: id });
-            }}
-          />
-        </HorizontalList.Container>
+
+        <HorizontalList
+          data={cast?.slice(0, 10) as CastMember[]}
+          label="Cast"
+          action={{ text: "Full Cast", handler: () => {} }}
+        />
+
+        <HorizontalList
+          data={similar}
+          label="Similar Movies"
+          itemClickHandler={(id: number) => {
+            navigation.navigate("MovieDetail", { id: id });
+          }}
+        />
       </DetailSection>
     </Container>
   );

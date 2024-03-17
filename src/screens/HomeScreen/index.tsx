@@ -1,7 +1,7 @@
 import { ScrollView } from "react-native";
 import Constants from "expo-constants";
 
-import { HorizontalList } from "@/components/UI/HorizontalList";
+import HorizontalList from "@/components/UI/HorizontalList";
 import useApi from "@/hooks/useApi";
 import {
   fetchNowPlayingMovies,
@@ -54,37 +54,29 @@ const HomeScreen = ({ navigation }: Props) => {
     >
       <HeroSection onPress={itemClickHandler} />
 
-      <HorizontalList.Container>
-        <HorizontalList.Label>Trending</HorizontalList.Label>
-        <HorizontalList.List
-          data={trendingMovies}
-          itemClickHandler={itemClickHandler}
-        />
-      </HorizontalList.Container>
+      <HorizontalList
+        data={trendingMovies}
+        label="Trending"
+        itemClickHandler={itemClickHandler}
+      />
 
-      <HorizontalList.Container>
-        <HorizontalList.Label>Now Playing</HorizontalList.Label>
-        <HorizontalList.List
-          data={nowPlayingMovies}
-          itemClickHandler={itemClickHandler}
-        />
-      </HorizontalList.Container>
+      <HorizontalList
+        data={nowPlayingMovies}
+        label="Now Playing"
+        itemClickHandler={itemClickHandler}
+      />
 
-      <HorizontalList.Container>
-        <HorizontalList.Label>Upcoming</HorizontalList.Label>
-        <HorizontalList.List
-          data={upcomingMovies}
-          itemClickHandler={itemClickHandler}
-        />
-      </HorizontalList.Container>
+      <HorizontalList
+        data={upcomingMovies}
+        label="Upcoming"
+        itemClickHandler={itemClickHandler}
+      />
 
-      <HorizontalList.Container>
-        <HorizontalList.Label>Popular</HorizontalList.Label>
-        <HorizontalList.List
-          data={popularMovies}
-          itemClickHandler={itemClickHandler}
-        />
-      </HorizontalList.Container>
+      <HorizontalList
+        data={popularMovies}
+        label="Popular"
+        itemClickHandler={itemClickHandler}
+      />
     </ScrollView>
   );
 };
