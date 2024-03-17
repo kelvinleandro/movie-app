@@ -4,16 +4,12 @@ import styled from "styled-components/native";
 import COLORS from "@/constants/colors";
 
 const Container = styled.ScrollView.attrs(() => ({
-  contentContainerStyle: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
   alwaysBounceVertical: false,
   bounces: false,
   overScrollMode: "never",
+  showsVerticalScrollIndicator: false,
 }))`
   flex: 1;
-  padding: 0px 8px 8px;
   margin-top: ${Constants.statusBarHeight * 1.75}px;
   margin-bottom: 8px;
 `;
@@ -26,6 +22,13 @@ const PosterWrapper = styled.View`
 const Poster = styled.Image`
   width: 100%;
   height: 100%;
+`;
+
+const DetailSection = styled.View`
+  margin-top: 10px;
+  padding: 0px 10px 10px;
+  align-self: stretch;
+  align-items: flex-start;
 `;
 
 const Title = styled.Text`
@@ -71,6 +74,7 @@ export {
   Container,
   PosterWrapper,
   Poster,
+  DetailSection,
   Title,
   Synopsis,
   InfoWrapper,

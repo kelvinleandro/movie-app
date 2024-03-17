@@ -23,6 +23,7 @@ import {
   InfoText,
   VoteWrapper,
   VoteText,
+  DetailSection
 } from "./styles";
 
 type Props = NativeStackScreenProps<
@@ -47,35 +48,31 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
         />
       </PosterWrapper>
 
-      <Title>{movie?.title}</Title>
-
-      <InfoWrapper>
-        <InfoText>{movie?.release_date.slice(0, 4)}</InfoText>
-
-        <InfoText>{formatRuntime(movie?.runtime)}</InfoText>
-
-        <VoteWrapper>
-          <AntDesign name="star" size={20} color={COLORS.secondary} />
-          <VoteText>{movie?.vote_average}/10</VoteText>
-        </VoteWrapper>
-      </InfoWrapper>
-
-      <Synopsis>{movie?.overview}</Synopsis>
-
-      <HorizontalList.Container>
-        <HorizontalList.Label>Cast</HorizontalList.Label>
-        <HorizontalList.List data={cast?.slice(0, 10) as CastMember[]} />
-      </HorizontalList.Container>
-
-      <HorizontalList.Container>
-        <HorizontalList.Label>Similar Movies</HorizontalList.Label>
-        <HorizontalList.List
-          data={similar}
-          itemClickHandler={(id: number) => {
-            navigation.navigate("MovieDetail", { id: id });
-          }}
-        />
-      </HorizontalList.Container>
+      <DetailSection>
+        <Title>{movie?.title}</Title>
+        <InfoWrapper>
+          <InfoText>{movie?.release_date.slice(0, 4)}</InfoText>
+          <InfoText>{formatRuntime(movie?.runtime)}</InfoText>
+          <VoteWrapper>
+            <AntDesign name="star" size={20} color={COLORS.secondary} />
+            <VoteText>{movie?.vote_average}/10</VoteText>
+          </VoteWrapper>
+        </InfoWrapper>
+        <Synopsis>{movie?.overview}</Synopsis>
+        <HorizontalList.Container>
+          <HorizontalList.Label>Cast</HorizontalList.Label>
+          <HorizontalList.List data={cast?.slice(0, 10) as CastMember[]} />
+        </HorizontalList.Container>
+        <HorizontalList.Container>
+          <HorizontalList.Label>Similar Movies</HorizontalList.Label>
+          <HorizontalList.List
+            data={similar}
+            itemClickHandler={(id: number) => {
+              navigation.navigate("MovieDetail", { id: id });
+            }}
+          />
+        </HorizontalList.Container>
+      </DetailSection>
     </Container>
   );
 };

@@ -50,6 +50,7 @@ const HomeScreen = ({ navigation }: Props) => {
       alwaysBounceVertical={false}
       bounces={false}
       overScrollMode={"never"}
+      showsVerticalScrollIndicator={false}
     >
       <HeroSection onPress={itemClickHandler} />
 
