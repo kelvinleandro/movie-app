@@ -10,6 +10,7 @@ import {
 } from "@/types/navigation";
 import styled from "styled-components/native";
 import { ScreenView } from "@/components/UI/StyledComponents";
+import CastList from "@/components/full-cast-screen/CastList";
 import COLORS from "@/constants/colors";
 
 type Props = NativeStackScreenProps<
@@ -24,6 +25,7 @@ const FullCastScreen = ({ route }: Props) => {
   return (
     <ScreenView>
       <Title>Full Cast ({cast?.length}):</Title>
+      <CastList data={cast} />
     </ScreenView>
   );
 };
@@ -32,6 +34,6 @@ export default FullCastScreen;
 
 const Title = styled.Text`
   color: ${COLORS.secondary};
-  font-size: 28px;
-  font-family: bold;
+  font-size: 32px;
+  font-weight: bold;
 `
