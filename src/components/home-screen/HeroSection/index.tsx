@@ -2,13 +2,12 @@ import { Pressable } from "react-native";
 import React from "react";
 
 import useApi from "@/hooks/useApi";
-import { fetchRandomPopularMovie } from "@/api/helper";
 import { getTmdbImage } from "@/utils";
 import {Background, Container, ContentContainer, GradientOverlay, Title} from "./styles"
 import GenreList from "../GenreList";
 
 const HeroSection = ({ onPress }: { onPress?: (id: number) => void }) => {
-  const { data: movie } = useApi(fetchRandomPopularMovie);
+  const { data: movie } = useApi("fetchRandomPopularMovie");
 
   return (
     <Pressable onPress={onPress?.bind(this, movie?.id as number)}>

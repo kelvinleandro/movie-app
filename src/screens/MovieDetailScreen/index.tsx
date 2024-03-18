@@ -3,7 +3,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 
 import useApi from "@/hooks/useApi";
-import { fetchMovie, fetchMovieCast, fetchSimilarMovies } from "@/api/helper";
 import {
   ExploreStackParamList,
   HomeStackParamList,
@@ -33,9 +32,9 @@ type Props = NativeStackScreenProps<
 
 const MovieDetailScreen = ({ navigation, route }: Props) => {
   const id = route.params.id;
-  const { data: movie } = useApi(fetchMovie, id);
-  const { data: cast } = useApi(fetchMovieCast, id);
-  const { data: similar } = useApi(fetchSimilarMovies, id);
+  const { data: movie } = useApi("fetchMovie", id);
+  const { data: cast } = useApi("fetchMovieCast", id);
+  const { data: similar } = useApi("fetchSimilarMovies", id);
 
   return (
     <ScreenView>

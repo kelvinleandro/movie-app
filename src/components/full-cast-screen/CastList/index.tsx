@@ -21,15 +21,13 @@ const CastList = ({ data }: { data: CastMember[] | null }) => {
   };
 
   return (
-    <View>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => `${item.id}`}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={Separator}
-      />
-    </View>
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={(item) => `${item.id}`}
+      showsVerticalScrollIndicator={false}
+      ItemSeparatorComponent={Separator}
+    />
   );
 };
 

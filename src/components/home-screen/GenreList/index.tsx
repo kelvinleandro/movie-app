@@ -2,12 +2,11 @@ import { View, Text, FlatList } from "react-native";
 import React from "react";
 
 import COLORS from "@/constants/colors";
-import { fetchCategories } from "@/api/helper";
 import useApi from "@/hooks/useApi";
 import { Genre } from "@/types/api";
 
 const GenreList = ({ list }: { list: number[] }) => {
-  const { data: genreList } = useApi(fetchCategories);
+  const { data: genreList } = useApi("fetchCategories");
 
   const filteredAndLimitedGenres = genreList
     ?.filter((genre) => list.includes(genre.id))

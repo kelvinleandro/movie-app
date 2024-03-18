@@ -1,14 +1,7 @@
-import { ScrollView } from "react-native";
 import Constants from "expo-constants";
 
 import HorizontalList from "@/components/UI/HorizontalList";
 import useApi from "@/hooks/useApi";
-import {
-  fetchNowPlayingMovies,
-  fetchPopularMovies,
-  fetchTrendingMovies,
-  fetchUpcomingMovies,
-} from "@/api/helper";
 import FetchingError from "@/components/UI/FetchingError";
 import HeroSection from "@/components/home-screen/HeroSection";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -18,10 +11,10 @@ import { ScreenView } from "@/components/UI/StyledComponents";
 type Props = NativeStackScreenProps<HomeStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
-  const { data: trendingMovies } = useApi(fetchTrendingMovies);
-  const { data: upcomingMovies } = useApi(fetchUpcomingMovies);
-  const { data: popularMovies } = useApi(fetchPopularMovies);
-  const { data: nowPlayingMovies } = useApi(fetchNowPlayingMovies);
+  const { data: trendingMovies } = useApi("fetchTrendingMovies");
+  const { data: upcomingMovies } = useApi("fetchUpcomingMovies");
+  const { data: popularMovies } = useApi("fetchPopularMovies");
+  const { data: nowPlayingMovies } = useApi("fetchNowPlayingMovies");
 
   const itemClickHandler = (id: number) => {
     navigation.navigate("MovieDetail", { id: id });
