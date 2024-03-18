@@ -14,7 +14,6 @@ import COLORS from "@/constants/colors";
 import HorizontalList from "@/components/UI/HorizontalList";
 import { CastMember } from "@/types/api";
 import {
-  Container,
   PosterWrapper,
   Poster,
   Title,
@@ -25,6 +24,7 @@ import {
   VoteText,
   DetailSection,
 } from "./styles";
+import { ScreenView } from "@/components/UI/StyledComponents";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -32,13 +32,13 @@ type Props = NativeStackScreenProps<
 >;
 
 const MovieDetailScreen = ({ navigation, route }: Props) => {
-  const id: number = route.params.id;
+  const id = route.params.id;
   const { data: movie } = useApi(fetchMovie, id);
   const { data: cast } = useApi(fetchMovieCast, id);
   const { data: similar } = useApi(fetchSimilarMovies, id);
 
   return (
-    <Container>
+    <ScreenView>
       <PosterWrapper>
         <Poster
           source={{
@@ -65,7 +65,12 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
         <HorizontalList
           data={cast?.slice(0, 10) as CastMember[]}
           label="Cast"
-          action={{ text: "Full Cast", handler: () => {} }}
+          action={{
+            text: "Full Cast",
+            handler: () => {
+              navigation.navigate("FullCast", { id: id });
+            },
+          }}
         />
 
         <HorizontalList
@@ -76,7 +81,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
           }}
         />
       </DetailSection>
-    </Container>
+    </ScreenView>
   );
 };
 

@@ -6,16 +6,15 @@ const Stack = createNativeStackNavigator<ProfileStackParamList>();
 
 import ProfileScreen from "@/screens/ProfileScreen";
 import MovieDetailScreen from "@/screens/MovieDetailScreen";
+import FullCastScreen from "@/screens/FullCastScreen";
 
 const ProfileStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
     >
-      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}} />
       <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
+      <Stack.Screen name="FullCast" component={FullCastScreen} />
     </Stack.Navigator>
   );
 };

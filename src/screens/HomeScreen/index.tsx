@@ -13,6 +13,7 @@ import FetchingError from "@/components/UI/FetchingError";
 import HeroSection from "@/components/home-screen/HeroSection";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "@/types/navigation";
+import { ScreenView } from "@/components/UI/StyledComponents";
 
 type Props = NativeStackScreenProps<HomeStackParamList, "Home">;
 
@@ -36,21 +37,15 @@ const HomeScreen = ({ navigation }: Props) => {
   }
 
   return (
-    <ScrollView
+    <ScreenView
       style={{
-        flex: 1,
         marginTop: Constants.statusBarHeight * 1.75,
-        paddingBottom: 8,
         paddingHorizontal: 8,
         marginBottom: 8,
       }}
       contentContainerStyle={{
         alignItems: "center",
       }}
-      alwaysBounceVertical={false}
-      bounces={false}
-      overScrollMode={"never"}
-      showsVerticalScrollIndicator={false}
     >
       <HeroSection onPress={itemClickHandler} />
 
@@ -77,7 +72,7 @@ const HomeScreen = ({ navigation }: Props) => {
         label="Popular"
         itemClickHandler={itemClickHandler}
       />
-    </ScrollView>
+    </ScreenView>
   );
 };
 

@@ -1,18 +1,6 @@
 import { Dimensions } from "react-native";
-import Constants from "expo-constants";
 import styled from "styled-components/native";
 import COLORS from "@/constants/colors";
-
-const Container = styled.ScrollView.attrs(() => ({
-  alwaysBounceVertical: false,
-  bounces: false,
-  overScrollMode: "never",
-  showsVerticalScrollIndicator: false,
-}))`
-  flex: 1;
-  margin-top: ${Constants.statusBarHeight * 1.75}px;
-  margin-bottom: 8px;
-`;
 
 const PosterWrapper = styled.View`
   width: ${Dimensions.get("window").width}px;
@@ -71,7 +59,6 @@ const VoteText = styled.Text`
 `;
 
 export {
-  Container,
   PosterWrapper,
   Poster,
   DetailSection,
