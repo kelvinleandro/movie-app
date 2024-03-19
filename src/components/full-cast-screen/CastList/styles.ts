@@ -12,6 +12,8 @@ const ItemImgContainer = styled.View`
   width: ${Dimensions.get("window").width * 0.3}px;
   height: ${Dimensions.get("window").width * 0.4}px;
   margin-right: 24px;
+  overflow: hidden;
+  border-radius:${Dimensions.get("window").width * 0.03}px;
 `;
 
 const ItemImage = styled.Image`
@@ -27,7 +29,7 @@ const ItemTextContainer = styled.View`
 const ItemName = styled.Text`
   color: ${COLORS.secondary};
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 const ItemCharacter = styled.Text`
@@ -54,6 +56,8 @@ const PlaceHolder = styled.View`
   background-color: ${COLORS.secondary};
   width: 100%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 
 export { Item, Separator, PlaceHolder };

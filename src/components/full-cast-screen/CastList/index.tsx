@@ -13,7 +13,7 @@ const CastItem = ({ item }: { item: CastMember }) => {
         {imageLoaded ? (
           <Item.Image
             source={{ uri: getTmdbImage(item.profile_path, "w300") }}
-            resizeMode="contain"
+            resizeMode="cover"
             onError={() => setImageLoaded(false)}
           />
         ) : (

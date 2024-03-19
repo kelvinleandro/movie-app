@@ -1,5 +1,6 @@
 import COLORS from "@/constants/colors";
 import styled from "styled-components/native";
+import { Dimensions } from "react-native";
 
 const Container = styled.View`
   flex: 1;
@@ -29,4 +30,29 @@ const Character = styled.Text`
   text-align: center;
 `;
 
-export { Container, Label, Name, Character };
+const PosterContainer = styled.View`
+  width: ${Dimensions.get("window").width / 3}px;
+  height: ${(Dimensions.get("window").width * 4) / 9}px;
+  border-radius: ${Dimensions.get("window").width * 0.03}px;
+  overflow: hidden;
+`
+
+const Poster = styled.Image`
+  width: 100%;
+  height: 100%;
+`
+
+const ItemContainer = styled.View`
+  overflow: hidden;
+  width: ${Dimensions.get("window").width / 3}px;
+`
+
+const Item = {
+  Container: ItemContainer,
+  PosterContainer,
+  Poster,
+  Name,
+  Character,
+}
+
+export { Container, Label, Item };
