@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <ScreenView
       style={{
-        marginTop: Constants.statusBarHeight * 1.75,
+        marginTop: Constants.statusBarHeight * 1.2,
         paddingHorizontal: 8,
         marginBottom: 8,
       }}

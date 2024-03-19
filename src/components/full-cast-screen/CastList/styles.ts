@@ -8,16 +8,21 @@ const ItemContainer = styled.View`
   margin: 10px 0;
 `;
 
-const ItemProfile = styled.Image`
+const ItemImgContainer = styled.View`
   width: ${Dimensions.get("window").width * 0.3}px;
   height: ${Dimensions.get("window").width * 0.4}px;
   margin-right: 24px;
 `;
 
+const ItemImage = styled.Image`
+  width: 100%;
+  height: 100%;
+`;
+
 const ItemTextContainer = styled.View`
   flex: 1;
   justify-content: center;
-`
+`;
 
 const ItemName = styled.Text`
   color: ${COLORS.secondary};
@@ -34,7 +39,8 @@ const ItemCharacter = styled.Text`
 const Item = {
   Container: ItemContainer,
   TextContainer: ItemTextContainer,
-  Profile: ItemProfile,
+  ImageContainer: ItemImgContainer,
+  Image: ItemImage,
   Name: ItemName,
   Character: ItemCharacter,
 };
@@ -42,6 +48,12 @@ const Item = {
 const Separator = styled.View`
   height: 2px;
   background-color: ${COLORS.secondary};
-`
+`;
 
-export { Item, Separator };
+const PlaceHolder = styled.View`
+  background-color: ${COLORS.secondary};
+  width: 100%;
+  height: 100%;
+`;
+
+export { Item, Separator, PlaceHolder };

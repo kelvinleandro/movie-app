@@ -1,29 +1,38 @@
-import { View, FlatList } from "react-native";
-import React from "react";
+import { FlatList } from "react-native";
+import React, { useState } from "react";
 import { CastMember } from "@/types/api";
-import { Item, Separator } from "./styles";
+import { Item, Separator, PlaceHolder } from "./styles";
 import { getTmdbImage } from "@/utils";
 
-const CastList = ({ data }: { data: CastMember[] | null }) => {
-  const renderItem = ({ item }: { item: CastMember }) => {
-    return (
-      <Item.Container>
-        <Item.Profile
-          source={{ uri: getTmdbImage(item.profile_path, "w300") }}
-          resizeMode="contain"
-        />
-        <Item.TextContainer>
-          <Item.Name>{item.name}</Item.Name>
-          <Item.Character>{item.character}</Item.Character>
-        </Item.TextContainer>
-      </Item.Container>
-    );
-  };
+const CastItem = ({ item }: { item: CastMember }) => {
+  const [imageLoaded, setImageLoaded] = useState(true);
 
+  return (
+    <Item.Container>
+      <Item.ImageContainer>
+        {imageLoaded ? (
+          <Item.Image
+            source={{ uri: getTmdbImage(item.profile_path, "w300") }}
+            resizeMode="contain"
+            onError={() => setImageLoaded(false)}
+          />
+        ) : (
+          <PlaceHolder />
+        )}
+      </Item.ImageContainer>
+      <Item.TextContainer>
+        <Item.Name>{item.name}</Item.Name>
+        <Item.Character>{item.character}</Item.Character>
+      </Item.TextContainer>
+    </Item.Container>
+  );
+};
+
+const CastList = ({ data }: { data: CastMember[] | null }) => {
   return (
     <FlatList
       data={data}
-      renderItem={renderItem}
+      renderItem={({item}) => <CastItem item={item} />}
       keyExtractor={(item) => `${item.id}`}
       showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={Separator}
