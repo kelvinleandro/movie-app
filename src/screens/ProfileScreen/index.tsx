@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import Constants from "expo-constants";
+
+import UserDetail from "@/components/profile-screen/UserDetail";
+import { ScreenView } from "@/components/UI/StyledComponents";
 
 const ProfileScreen = () => {
   return (
-    <View>
-      <Text>ProfileScreen</Text>
-    </View>
-  )
-}
+    <ScreenView style={{ marginTop: Constants.statusBarHeight }}>
+      <UserDetail />
+    </ScreenView>
+  );
+};
 
-export default ProfileScreen
+export default ProfileScreen;
