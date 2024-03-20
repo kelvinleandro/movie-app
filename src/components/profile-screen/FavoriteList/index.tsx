@@ -2,7 +2,6 @@ import { View, Text, FlatList } from "react-native";
 import React, { useContext } from "react";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import COLORS from "@/constants/colors";
-import { Separator } from "@/components/full-cast-screen/CastList/styles";
 
 const FavoriteList = () => {
   const favoriteContext = useContext(FavoriteMoviesContext);
@@ -14,7 +13,7 @@ const FavoriteList = () => {
         renderItem={({ item }) => <Text style={{color: COLORS.text}} >{item}</Text>}
         keyExtractor={(item) => item.toString()}
         numColumns={3}
-        ItemSeparatorComponent={Separator}
+        ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
         ListEmptyComponent={() => (
           <Text
             style={{
