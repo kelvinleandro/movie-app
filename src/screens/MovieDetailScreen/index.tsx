@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
+import { View } from "react-native";
 
 import useApi from "@/hooks/useApi";
 import {
@@ -65,16 +66,26 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
 
         <Synopsis>{movie?.overview}</Synopsis>
 
-        <Button
-          mode={isFavorite ? "outlined" : "contained"}
-          icon={isFavorite ? "close" : "plus"}
-          textColor={isFavorite ? COLORS.secondary : COLORS.text}
-          buttonColor={isFavorite ? "transparent" : COLORS.secondary}
-          onPress={() => favoriteContext?.toggleFavorite(id)}
-          accessibilityLabel="Add to Favorites"
+        <View
+          style={{ width: "100%", alignItems: "center", marginVertical: 12 }}
         >
-          {isFavorite ? "Remove from favorites" : "Add to Favorites"}
-        </Button>
+          <Button
+            mode={isFavorite ? "outlined" : "contained"}
+            icon={isFavorite ? "close" : "plus"}
+            textColor={isFavorite ? COLORS.secondary : COLORS.text}
+            buttonColor={isFavorite ? "transparent" : COLORS.secondary}
+            onPress={() => favoriteContext?.toggleFavorite(id)}
+            accessibilityLabel="Add to Favorites"
+            style={{
+              width: "90%",
+              paddingVertical: 2,
+              borderColor: COLORS.secondary,
+            }}
+            labelStyle={{ fontSize: 18, fontWeight: "600" }}
+          >
+            {isFavorite ? "Remove from favorites" : "Add to Favorites"}
+          </Button>
+        </View>
 
         <HorizontalList
           data={cast?.slice(0, 10) as CastMember[]}

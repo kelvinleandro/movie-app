@@ -13,8 +13,8 @@ const Poster = styled.Image`
 `;
 
 const DetailSection = styled.View`
-  margin-top: 10px;
-  padding: 0px 10px 10px;
+  margin-top: 12px;
+  padding: 0px 12px 12px;
   align-self: stretch;
   align-items: flex-start;
 `;
@@ -29,9 +29,8 @@ const Title = styled.Text`
 const Synopsis = styled.Text`
   color: ${COLORS.text};
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   text-align: justify;
-  line-height: 20px;
 `;
 
 const InfoWrapper = styled.View`
