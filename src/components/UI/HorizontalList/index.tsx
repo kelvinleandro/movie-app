@@ -1,4 +1,4 @@
-import { FlatList, TouchableOpacity, View } from "react-native";
+import { FlatList, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 
@@ -23,7 +23,7 @@ interface HorizontalListProps {
   itemClickHandler?: (id: number) => void;
 }
 
-export const ListItem = ({ item, itemClickHandler }: ListItemProps) => {
+const ListItem = ({ item, itemClickHandler}: ListItemProps) => {
   const uri = "poster_path" in item ? item.poster_path : item.profile_path;
   return (
     <TouchableOpacity

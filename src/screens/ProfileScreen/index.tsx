@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import Constants from "expo-constants";
 
 import COLORS from "@/constants/colors";
@@ -19,17 +19,19 @@ const ProfileScreen = ({ navigation }: Props) => {
   return (
     <ScreenView style={{ marginTop: Constants.statusBarHeight }}>
       <UserDetail />
-      <Text
-        style={{
-          color: COLORS.secondary,
-          fontSize: 32,
-          fontWeight: "bold",
-          marginVertical: 12,
-        }}
-      >
-        Favorite Movies
-      </Text>
-      <FavoriteList onItemPress={handleListItemPress} />
+      <View style={{paddingHorizontal: 12, width:"100%"}} >
+        <Text
+          style={{
+            color: COLORS.secondary,
+            fontSize: 32,
+            fontWeight: "bold",
+            marginVertical: 12,
+          }}
+        >
+          Favorite Movies
+        </Text>
+        <FavoriteList onItemPress={handleListItemPress} />
+      </View>
     </ScreenView>
   );
 };

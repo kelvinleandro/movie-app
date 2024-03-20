@@ -39,7 +39,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
   const { data: cast } = useApi("fetchMovieCast", id);
   const { data: similar } = useApi("fetchSimilarMovies", id);
   const favoriteContext = useContext(FavoriteMoviesContext);
-  const isFavorite = favoriteContext?.favoriteMovies.includes(movie as Movie);
+  const isFavorite = favoriteContext?.isFavorite(id);
 
   return (
     <ScreenView>
