@@ -17,9 +17,11 @@ const ProfileScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <ScreenView style={{ marginTop: Constants.statusBarHeight }}>
+    <View
+      style={{ flex: 1, marginBottom: 8, marginTop: Constants.statusBarHeight }}
+    >
       <UserDetail />
-      <View style={{paddingHorizontal: 12, width:"100%"}} >
+      <View style={{ paddingHorizontal: 12, width: "100%" }}>
         <Text
           style={{
             color: COLORS.secondary,
@@ -32,7 +34,7 @@ const ProfileScreen = ({ navigation }: Props) => {
         </Text>
         <FavoriteList onItemPress={handleListItemPress} />
       </View>
-    </ScreenView>
+    </View>
   );
 };
 
