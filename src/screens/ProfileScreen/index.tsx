@@ -6,8 +6,16 @@ import COLORS from "@/constants/colors";
 import { ScreenView } from "@/components/UI/StyledComponents";
 import UserDetail from "@/components/profile-screen/UserDetail";
 import FavoriteList from "@/components/profile-screen/FavoriteList";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ProfileStackParamList } from "@/types/navigation";
 
-const ProfileScreen = () => {
+type Props = NativeStackScreenProps<ProfileStackParamList, "Profile">;
+
+const ProfileScreen = ({ navigation }: Props) => {
+  const handleListItemPress = (id: number) => {
+    navigation.navigate("MovieDetail", { id: id });
+  };
+
   return (
     <ScreenView style={{ marginTop: Constants.statusBarHeight }}>
       <UserDetail />
@@ -21,7 +29,7 @@ const ProfileScreen = () => {
       >
         Favorite Movies
       </Text>
-      <FavoriteList />
+      <FavoriteList onItemPress={handleListItemPress} />
     </ScreenView>
   );
 };

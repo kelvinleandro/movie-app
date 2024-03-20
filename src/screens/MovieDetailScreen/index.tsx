@@ -13,7 +13,7 @@ import {
 import { formatRuntime, getTmdbImage } from "@/utils";
 import COLORS from "@/constants/colors";
 import HorizontalList from "@/components/UI/HorizontalList";
-import { CastMember } from "@/types/api";
+import { CastMember, Movie } from "@/types/api";
 import {
   PosterWrapper,
   Poster,
@@ -39,7 +39,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
   const { data: cast } = useApi("fetchMovieCast", id);
   const { data: similar } = useApi("fetchSimilarMovies", id);
   const favoriteContext = useContext(FavoriteMoviesContext);
-  const isFavorite = favoriteContext?.favoriteMovies.includes(id) || false;
+  const isFavorite = favoriteContext?.favoriteMovies.includes(movie as Movie);
 
   return (
     <ScreenView>
@@ -74,7 +74,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
             icon={isFavorite ? "close" : "plus"}
             textColor={isFavorite ? COLORS.secondary : COLORS.text}
             buttonColor={isFavorite ? "transparent" : COLORS.secondary}
-            onPress={() => favoriteContext?.toggleFavorite(id)}
+            onPress={() => favoriteContext?.toggleFavorite(movie as Movie)}
             accessibilityLabel="Add to Favorites"
             style={{
               width: "90%",

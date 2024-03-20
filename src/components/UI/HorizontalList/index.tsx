@@ -23,7 +23,7 @@ interface HorizontalListProps {
   itemClickHandler?: (id: number) => void;
 }
 
-const ListItem = ({ item, itemClickHandler }: ListItemProps) => {
+export const ListItem = ({ item, itemClickHandler }: ListItemProps) => {
   const uri = "poster_path" in item ? item.poster_path : item.profile_path;
   return (
     <TouchableOpacity
