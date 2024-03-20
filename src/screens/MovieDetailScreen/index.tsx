@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
+import { Button } from "react-native-paper";
 
 import useApi from "@/hooks/useApi";
 import {
@@ -24,6 +25,7 @@ import {
   DetailSection,
 } from "./styles";
 import { ScreenView } from "@/components/UI/StyledComponents";
+import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -35,6 +37,8 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
   const { data: movie } = useApi("fetchMovie", id);
   const { data: cast } = useApi("fetchMovieCast", id);
   const { data: similar } = useApi("fetchSimilarMovies", id);
+  const favoriteContext = useContext(FavoriteMoviesContext);
+  const isFavorite = favoriteContext?.favoriteMovies.includes(id) || false;
 
   return (
     <ScreenView>
@@ -60,6 +64,17 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
         </InfoWrapper>
 
         <Synopsis>{movie?.overview}</Synopsis>
+
+        <Button
+          mode={isFavorite ? "outlined" : "contained"}
+          icon={isFavorite ? "close" : "plus"}
+          textColor={isFavorite ? COLORS.secondary : COLORS.text}
+          buttonColor={isFavorite ? "transparent" : COLORS.secondary}
+          onPress={() => favoriteContext?.toggleFavorite(id)}
+          accessibilityLabel="Add to Favorites"
+        >
+          {isFavorite ? "Remove from favorites" : "Add to Favorites"}
+        </Button>
 
         <HorizontalList
           data={cast?.slice(0, 10) as CastMember[]}
