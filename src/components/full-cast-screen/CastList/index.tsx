@@ -1,7 +1,7 @@
-import { FlatList } from "react-native";
+import { FlatList, Text } from "react-native";
 import React, { useState } from "react";
 import { CastMember } from "@/types/api";
-import { Item, Separator, PlaceHolder } from "./styles";
+import { Item, Separator, PlaceHolder, PlaceHolderText } from "./styles";
 import { getTmdbImage } from "@/utils";
 
 const CastItem = ({ item }: { item: CastMember }) => {
@@ -17,7 +17,7 @@ const CastItem = ({ item }: { item: CastMember }) => {
             onError={() => setImageLoaded(false)}
           />
         ) : (
-          <PlaceHolder />
+          <PlaceHolder><PlaceHolderText>Image Unavailable</PlaceHolderText></PlaceHolder>
         )}
       </Item.ImageContainer>
       <Item.TextContainer>

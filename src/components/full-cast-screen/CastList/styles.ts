@@ -60,4 +60,12 @@ const PlaceHolder = styled.View`
   justify-content: center;
 `;
 
-export { Item, Separator, PlaceHolder };
+const PlaceHolderText = styled.Text`
+  color: ${COLORS.primary};
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+`
+
+export { Item, Separator, PlaceHolder, PlaceHolderText };
