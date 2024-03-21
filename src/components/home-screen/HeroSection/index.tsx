@@ -3,15 +3,30 @@ import React from "react";
 
 import useApi from "@/hooks/useApi";
 import { getTmdbImage } from "@/utils";
-import {Background, Container, ContentContainer, GradientOverlay, Title} from "./styles"
+import {
+  Background,
+  Container,
+  ContentContainer,
+  GradientOverlay,
+  Title,
+} from "./styles";
 import GenreList from "../GenreList";
+import COLORS from "@/constants/colors";
 
 const HeroSection = ({ onPress }: { onPress?: (id: number) => void }) => {
   const { data: movie } = useApi("fetchRandomPopularMovie");
 
   return (
     <Pressable onPress={onPress?.bind(this, movie?.id as number)}>
-      <Container>
+      <Container
+        style={{
+          shadowColor: COLORS.secondary,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.2,
+          shadowRadius: 10,
+          elevation: 10,
+        }}
+      >
         <Background
           source={{
             uri: getTmdbImage(movie?.poster_path, "w500"),
