@@ -7,6 +7,7 @@ import COLORS from "@/constants/colors";
 import useApi from "@/hooks/useApi";
 import { Genre } from "@/types/api";
 import CategoryModal from "@/components/explore-screen/CategoryModal";
+import CategoryList from "@/components/explore-screen/CategoryList";
 
 const ExploreScreen = () => {
   const [category, setCategory] = useState({ id: 0, name: "" });
@@ -58,6 +59,8 @@ const ExploreScreen = () => {
           {category.name}
         </Button>
       </View>
+
+      <CategoryList genreId={category.id} />
 
       <CategoryModal
         visible={categoryModalVisible}
