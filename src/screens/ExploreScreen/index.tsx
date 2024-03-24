@@ -1,8 +1,8 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import Constants from "expo-constants";
+import { Button } from "react-native-paper";
 
-import { Portal, Modal, Button } from "react-native-paper";
 import COLORS from "@/constants/colors";
 import useApi from "@/hooks/useApi";
 import { Genre } from "@/types/api";
@@ -64,26 +64,6 @@ const ExploreScreen = () => {
         onDismiss={() => setCategoryModalVisible(false)}
         onItemPress={categoryItemPressHandler}
       />
-
-      {/* <Portal>
-        <Modal
-          visible={categoryModalVisible}
-          onDismiss={() => setCategoryModalVisible(false)}
-          contentContainerStyle={{
-            backgroundColor: "white",
-            padding: 12,
-            width: "90%",
-            alignSelf: "center",
-          }}
-        >
-          <FlatList
-            data={genres}
-            keyExtractor={(item) => item.id.toString()}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => <Text>{item.name}</Text>}
-          />
-        </Modal>
-      </Portal> */}
     </View>
   );
 };

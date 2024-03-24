@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import Constants from "expo-constants";
 
 import COLORS from "@/constants/colors";
-import { ScreenView } from "@/components/UI/StyledComponents";
 import UserDetail from "@/components/profile-screen/UserDetail";
-import FavoriteList from "@/components/profile-screen/FavoriteList";
+import ThreeColumnList from "@/components/UI/ThreeColumnList";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ProfileStackParamList } from "@/types/navigation";
+import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
+import { Movie } from "@/types/api";
 
 type Props = NativeStackScreenProps<ProfileStackParamList, "Profile">;
 
 const ProfileScreen = ({ navigation }: Props) => {
+  const favoriteContext = useContext(FavoriteMoviesContext)
+
   const handleListItemPress = (id: number) => {
     navigation.navigate("MovieDetail", { id: id });
   };
@@ -32,7 +35,7 @@ const ProfileScreen = ({ navigation }: Props) => {
         >
           Favorite Movies
         </Text>
-        <FavoriteList onItemPress={handleListItemPress} />
+        <ThreeColumnList data={favoriteContext?.favoriteMovies as Movie[]} onItemPress={handleListItemPress} />
       </View>
     </View>
   );
