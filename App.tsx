@@ -1,5 +1,6 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import { PaperProvider } from "react-native-paper";
 
 import MainTab from "@/navigation/MainTab";
 import { FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
@@ -16,11 +17,13 @@ const MyTheme = {
 
 export default function App() {
   return (
-    <FavoriteMoviesProvider>
-      <StatusBar style="light" />
-      <NavigationContainer theme={MyTheme}>
-        <MainTab />
-      </NavigationContainer>
-    </FavoriteMoviesProvider>
+    <PaperProvider>
+      <FavoriteMoviesProvider>
+        <StatusBar style="light" />
+        <NavigationContainer theme={MyTheme}>
+          <MainTab />
+        </NavigationContainer>
+      </FavoriteMoviesProvider>
+    </PaperProvider>
   );
 }
