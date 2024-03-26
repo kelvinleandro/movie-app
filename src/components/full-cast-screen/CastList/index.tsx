@@ -1,4 +1,4 @@
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import React, { useState } from "react";
 import { CastMember } from "@/types/api";
 import { Item, Separator, PlaceHolder, PlaceHolderText } from "./styles";

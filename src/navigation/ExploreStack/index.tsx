@@ -5,6 +5,7 @@ import ExploreScreen from "@/screens/ExploreScreen";
 import MovieDetailScreen from "@/screens/MovieDetailScreen";
 import FullCastScreen from "@/screens/FullCastScreen";
 import COLORS from "@/constants/colors";
+import SearchScreen from "@/screens/SearchScreen";
 
 const Stack = createNativeStackNavigator<ExploreStackParamList>();
 
@@ -26,6 +27,11 @@ const ExploreStack = () => {
       />
       <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
       <Stack.Screen name="FullCast" component={FullCastScreen} />
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ presentation: "modal" }}
+      />
     </Stack.Navigator>
   );
 };

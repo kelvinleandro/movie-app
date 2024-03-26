@@ -1,4 +1,4 @@
-import { FlatList, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 

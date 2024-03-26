@@ -13,6 +13,7 @@ export type ExploreStackParamList = {
   Explore: undefined;
   MovieDetail: MovieDetailScreenProps;
   FullCast: FullCastScreenProps;
+  Search: undefined;
 };
 
 export type ProfileStackParamList = {

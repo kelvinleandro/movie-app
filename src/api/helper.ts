@@ -105,6 +105,18 @@ const fetchMoviesByGenre = async (genreId: number): Promise<Movie[]> => {
   }
 };
 
+const fetchMoviesByQuery = async (query: string): Promise<Movie[]> => {
+  try {
+    const response = await axiosInstance.get<{results: Movie[]}>("search/movie", {
+      params: { query: query }
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(`Error fetching movies by title ${query}:`, error);
+    throw error;
+  }
+};
+
 export {
   fetchCategories,
   fetchMovie,
@@ -115,5 +127,6 @@ export {
   fetchRandomPopularMovie,
   fetchSimilarMovies,
   fetchTrendingMovies,
-  fetchUpcomingMovies
+  fetchUpcomingMovies,
+  fetchMoviesByQuery
 }

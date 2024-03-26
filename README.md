@@ -4,6 +4,6 @@ TODO:
 - [X] MovieDetail Screen
 - [X] FullCast Screen
 - [X] Profile Screen
-- [ ] Discover/Explore Screen
-- [ ] Search bar / screen (maybe)
+- [X] Discover/Explore Screen
+- [X] Search screen
 - [ ] Skeleton loader

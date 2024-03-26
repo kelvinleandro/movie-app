@@ -37,7 +37,7 @@ const ThreeColumnList = ({
 }) => {
 
   return (
-    <View style={{width: "100%", alignItems: "center"}}>
+    <View style={{width: "100%"}}>
       <FlatList
         data={data}
         renderItem={({ item }) => (
