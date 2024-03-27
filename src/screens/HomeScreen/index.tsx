@@ -7,18 +7,30 @@ import HeroSection from "@/components/home-screen/HeroSection";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "@/types/navigation";
 import { ScreenView } from "@/components/UI/StyledComponents";
+import SkeletonHome from "@/components/UI/Skeleton/SkeletonHome";
 
 type Props = NativeStackScreenProps<HomeStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
-  const { data: trendingMovies } = useApi("fetchTrendingMovies");
-  const { data: upcomingMovies } = useApi("fetchUpcomingMovies");
-  const { data: popularMovies } = useApi("fetchPopularMovies");
-  const { data: nowPlayingMovies } = useApi("fetchNowPlayingMovies");
+  const { data: trendingMovies, isLoading: loadingTrending } = useApi(
+    "fetchTrendingMovies"
+  );
+  const { data: upcomingMovies, isLoading: loadingUpcoming } = useApi(
+    "fetchUpcomingMovies"
+  );
+  const { data: popularMovies, isLoading: loadingPopular } =
+    useApi("fetchPopularMovies");
+  const { data: nowPlayingMovies, isLoading: loadingNowPlaying } = useApi(
+    "fetchNowPlayingMovies"
+  );
 
   const itemClickHandler = (id: number) => {
     navigation.navigate("MovieDetail", { id: id });
   };
+
+  if (loadingTrending || loadingUpcoming || loadingPopular || loadingNowPlaying){
+    return <SkeletonHome />;
+  }
 
   if (
     !trendingMovies ||
