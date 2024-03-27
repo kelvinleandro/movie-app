@@ -27,6 +27,7 @@ import {
 } from "./styles";
 import { ScreenView } from "@/components/UI/StyledComponents";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
+import SkeletonMovieDetail from "@/components/UI/Skeleton/SkeletonMovieDetail";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -35,11 +36,15 @@ type Props = NativeStackScreenProps<
 
 const MovieDetailScreen = ({ navigation, route }: Props) => {
   const id = route.params.id;
-  const { data: movie } = useApi("fetchMovie", id);
-  const { data: cast } = useApi("fetchMovieCast", id);
-  const { data: similar } = useApi("fetchSimilarMovies", id);
+  const { data: movie, isLoading: loadingMovie } = useApi("fetchMovie", id);
+  const { data: cast, isLoading: loadingCast } = useApi("fetchMovieCast", id);
+  const { data: similar, isLoading: loadingSimilar } = useApi("fetchSimilarMovies", id);
   const favoriteContext = useContext(FavoriteMoviesContext);
   const isFavorite = favoriteContext?.isFavorite(id);
+
+  if (loadingMovie || loadingCast || loadingSimilar) {
+    return <SkeletonMovieDetail />;
+  }
 
   return (
     <ScreenView>

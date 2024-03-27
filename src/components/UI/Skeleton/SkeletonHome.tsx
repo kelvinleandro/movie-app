@@ -2,8 +2,9 @@ import { View, Dimensions } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
 import ContentLoader, { Rect } from "react-content-loader/native";
+import COLORS from "@/constants/colors";
 
-const SPEED = 2;
+const SPEED = 1.25;
 
 const SkeletonHome = () => {
   return (
@@ -16,11 +17,14 @@ const SkeletonHome = () => {
         alignItems: "center",
       }}
     >
+      {/* hero section skeleton */}
       <ContentLoader
         speed={SPEED}
         width={Dimensions.get("window").width * 0.8}
         height={(Dimensions.get("window").width * 0.8 * 3) / 2}
         style={{ marginBottom: 16 }}
+        backgroundColor={COLORS.skeletonBackground}
+        foregroundColor={COLORS.skeletonForeground}
       >
         <Rect
           x={0}
@@ -32,10 +36,13 @@ const SkeletonHome = () => {
         />
       </ContentLoader>
 
+      {/* horizontal list skeleton */}
       <ContentLoader
         speed={SPEED}
         width={Dimensions.get("window").width}
         height={50 + (Dimensions.get("window").width * 4) / 9}
+        backgroundColor={COLORS.skeletonBackground}
+        foregroundColor={COLORS.skeletonForeground}
       >
         <Rect
           x={0}
