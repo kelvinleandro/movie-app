@@ -13,12 +13,4 @@ const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
-// const axiosInstance: AxiosInstance = axios.create({
-//   baseURL: 'https://api.themoviedb.org/3/',
-//   params: {
-//     api_key: 'YOUR_TMDB_API_KEY', // Replace with your actual TMDB API key
-//     language: 'en-US'
-//   },
-// });
-
 export default axiosInstance;

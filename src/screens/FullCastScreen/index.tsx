@@ -10,6 +10,7 @@ import {
 } from "@/types/navigation";
 import CastList from "@/components/full-cast-screen/CastList";
 import COLORS from "@/constants/colors";
+import SkeletonFullCast from "@/components/UI/Skeleton/SkeletonFullCast";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -18,7 +19,11 @@ type Props = NativeStackScreenProps<
 
 const FullCastScreen = ({ route }: Props) => {
   const id = route.params.id;
-  const { data: cast } = useApi("fetchMovieCast", id);
+  const { data: cast, isLoading: loadingCast } = useApi("fetchMovieCast", id);
+
+  if (loadingCast) {
+    return <SkeletonFullCast />
+  }
 
   return (
     <Container>
