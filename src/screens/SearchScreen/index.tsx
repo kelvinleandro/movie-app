@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import React, { useState } from "react";
-import Constants from "expo-constants";
 import { Searchbar } from "react-native-paper";
 
 import QueryList from "@/components/search-screen/QueryList";
@@ -17,13 +16,12 @@ const SearchScreen = () => {
       style={{
         flex: 1,
         backgroundColor: COLORS.primary,
-        marginTop: Constants.statusBarHeight,
         marginBottom: 8,
-        paddingHorizontal: 12,
-        gap: 12
+        gap: 12,
       }}
     >
       <Searchbar
+        mode="view"
         placeholder="Search movie"
         onChangeText={changeQueryHandler}
         onClearIconPress={clearInputHandler}
@@ -31,8 +29,14 @@ const SearchScreen = () => {
         searchAccessibilityLabel="Search for movie"
         inputStyle={{ color: COLORS.primary }}
         iconColor={COLORS.primary}
+        style={{
+          borderBottomWidth: 2,
+          borderBottomColor: COLORS.secondary,
+        }}
       />
-      <QueryList query={query} />
+      <View style={{ paddingHorizontal: 12 }}>
+        <QueryList query={query} />
+      </View>
     </View>
   );
 };
