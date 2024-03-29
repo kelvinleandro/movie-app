@@ -3,32 +3,13 @@
 A simple yet powerful React Native app to explore movies, utilizing the TMDB API. Built with Expo, TypeScript, and styled with styled-components. This app allows users to browse movies, view detailed information, and mark movies as favorites.
 
 ## Preview
-
-<div style="display: grid; grid-template-columns: auto auto auto; gap: 10px;">
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Home Screen
-    <img src="src/assets/preview_home.png" alt="Home screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Explore Screen
-    <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Profile Screen
-    <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Movie Detail
-    <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Movie Detail
-    <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
-    Full cast screen
-    <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
-  </div>
+<div style="display: flex; flex-direction:row; flex-wrap: wrap;">
+  <img src="src/assets/preview_home.png" alt="Home screen" style="width: 200px;" />
+  <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 200px;">
+  <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 200px;">
+  <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1" style="width: 200px;">
+  <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2" style="width: 200px;">
+  <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 200px;">
 </div>
 
 ## Features
@@ -65,8 +46,8 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
    npm install
    ```
 3. Add your TMDB API access token in `src/api/instance.ts`:
-   ```
-   const ACCESS_TOKEN= <your_access_token_here>;
+   ```js
+   const ACCESS_TOKEN = "place_your_access_token_here";
    ```
 4. Start the app:
    ```sh
