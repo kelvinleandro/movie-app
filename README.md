@@ -4,6 +4,63 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 
 ## Preview
 
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+  }
+
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid black;
+  }
+
+  .grid-item img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: auto auto;
+    }
+  }
+</style>
+
+<div class="grid-container">
+  <div class="grid-item">
+    Home Screen
+    <img src="src/assets/preview_home.png" alt="Home screen">
+  </div>
+  <div class="grid-item">
+    Explore Screen
+    <img src="src/assets/preview_explore.png" alt="Explore screen">
+  </div>
+  <div class="grid-item">
+    Profile Screen
+    <img src="src/assets/preview_profile.png" alt="Profile screen">
+  </div>
+  <div class="grid-item">
+    Movie Detail
+    <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1">
+  </div>
+  <div class="grid-item">
+    Movie Detail
+    <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2">
+  </div>
+  <div class="grid-item">
+    Full cast screen
+    <img src="src/assets/preview_fullcast.png" alt="Full cast screen">
+  </div>
+</div>
+
 ## Features
 
 - **Explore Movies:** Browse through a list of movies based fetched from the TMDB API.
