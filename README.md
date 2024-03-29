@@ -4,60 +4,30 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 
 ## Preview
 
-<style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 10px;
-  }
-
-  .grid-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid black;
-  }
-
-  .grid-item img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    margin-top: 10px;
-  }
-
-  @media screen and (max-width: 600px) {
-    .grid-container {
-      grid-template-columns: auto auto;
-    }
-  }
-</style>
-
-<div class="grid-container">
-  <div class="grid-item">
+<div style="display: grid; grid-template-columns: auto auto auto; gap: 10px;">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Home Screen
-    <img src="src/assets/preview_home.png" alt="Home screen">
+    <img src="src/assets/preview_home.png" alt="Home screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
-  <div class="grid-item">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Explore Screen
-    <img src="src/assets/preview_explore.png" alt="Explore screen">
+    <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
-  <div class="grid-item">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Profile Screen
-    <img src="src/assets/preview_profile.png" alt="Profile screen">
+    <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
-  <div class="grid-item">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Movie Detail
-    <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1">
+    <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
-  <div class="grid-item">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Movie Detail
-    <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2">
+    <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
-  <div class="grid-item">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; border: 1px solid black;">
     Full cast screen
-    <img src="src/assets/preview_fullcast.png" alt="Full cast screen">
+    <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 100%; max-width: 250px; height: auto; margin-top: 10px;">
   </div>
 </div>
 
