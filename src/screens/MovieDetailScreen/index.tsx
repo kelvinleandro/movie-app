@@ -28,6 +28,7 @@ import {
 import { ScreenView } from "@/components/UI/StyledComponents";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import SkeletonMovieDetail from "@/components/UI/Skeleton/SkeletonMovieDetail";
+import FetchingError from "@/components/UI/FetchingError";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -36,14 +37,18 @@ type Props = NativeStackScreenProps<
 
 const MovieDetailScreen = ({ navigation, route }: Props) => {
   const id = route.params.id;
-  const { data: movie, isLoading: loadingMovie } = useApi("fetchMovie", id);
-  const { data: cast, isLoading: loadingCast } = useApi("fetchMovieCast", id);
-  const { data: similar, isLoading: loadingSimilar } = useApi("fetchSimilarMovies", id);
+  const { data: movie, isLoading: loadingMovie, error: errorMovie } = useApi("fetchMovie", id);
+  const { data: cast, isLoading: loadingCast, error: errorCast } = useApi("fetchMovieCast", id);
+  const { data: similar, isLoading: loadingSimilar, error: errorSimilar } = useApi("fetchSimilarMovies", id);
   const favoriteContext = useContext(FavoriteMoviesContext);
   const isFavorite = favoriteContext?.isFavorite(id);
 
   if (loadingMovie || loadingCast || loadingSimilar) {
     return <SkeletonMovieDetail />;
+  }
+
+  if (errorMovie || errorCast || errorSimilar) {
+    return <FetchingError />
   }
 
   return (

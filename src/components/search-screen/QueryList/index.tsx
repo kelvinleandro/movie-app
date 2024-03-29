@@ -7,6 +7,7 @@ import useApi from "@/hooks/useApi";
 import { ExploreStackParamList } from "@/types/navigation";
 import { ActivityIndicator } from "react-native-paper";
 import COLORS from "@/constants/colors";
+import FetchingError from "@/components/UI/FetchingError";
 
 interface QueryListProps {
   query: string;
@@ -15,7 +16,7 @@ interface QueryListProps {
 type NavigationType = NativeStackNavigationProp<ExploreStackParamList>;
 
 const QueryList = ({ query }: QueryListProps) => {
-  const { data: movies, isLoading } = useApi("fetchMoviesByQuery", query);
+  const { data: movies, isLoading, error } = useApi("fetchMoviesByQuery", query);
   const navigation = useNavigation<NavigationType>();
 
   const itemPressHandler = (id: number) => {
@@ -24,6 +25,10 @@ const QueryList = ({ query }: QueryListProps) => {
 
   if (isLoading) {
     return <ActivityIndicator color={COLORS.secondary} size={"large"} />;
+  }
+
+  if (error) {
+    return <FetchingError />
   }
 
   return <ThreeColumnList data={movies} onItemPress={itemPressHandler} />;

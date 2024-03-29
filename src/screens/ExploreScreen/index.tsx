@@ -10,12 +10,13 @@ import { Genre } from "@/types/api";
 import CategoryModal from "@/components/explore-screen/CategoryModal";
 import CategoryList from "@/components/explore-screen/CategoryList";
 import { ExploreStackParamList } from "@/types/navigation";
+import FetchingError from "@/components/UI/FetchingError";
 
 type Props = NativeStackScreenProps<ExploreStackParamList, "Explore">;
 
-const ExploreScreen = ({navigation} : Props) => {
+const ExploreScreen = ({ navigation }: Props) => {
   const [category, setCategory] = useState({ id: 0, name: "" });
-  const { data: genres } = useApi("fetchCategories");
+  const { data: genres, error } = useApi("fetchCategories");
   const [categoryModalVisible, setCategoryModalVisible] = useState(false);
 
   useEffect(() => {
@@ -26,6 +27,10 @@ const ExploreScreen = ({navigation} : Props) => {
     setCategory(item);
     setCategoryModalVisible(false);
   };
+
+  if (error) {
+    return <FetchingError />;
+  }
 
   return (
     <View
@@ -72,7 +77,7 @@ const ExploreScreen = ({navigation} : Props) => {
           icon="magnify"
           iconColor={COLORS.secondary}
           size={28}
-          onPress={() => navigation.navigate('Search')}
+          onPress={() => navigation.navigate("Search")}
           accessibilityLabel="Search for a movie"
           style={{ flex: 1 }}
         />
@@ -85,7 +90,6 @@ const ExploreScreen = ({navigation} : Props) => {
         onDismiss={() => setCategoryModalVisible(false)}
         onItemPress={categoryItemPressHandler}
       />
-      
     </View>
   );
 };
