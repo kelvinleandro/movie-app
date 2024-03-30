@@ -7,10 +7,10 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
   <img src="src/assets/preview_home.png" alt="Home screen" style="width: 200px;" />
   <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 200px;">
   <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 200px;">
-  <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 200px;">
+  <img src="src/assets/preview_search.png" alt="Movie Detail 2" style="width: 200px;">
   <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1" style="width: 200px;">
   <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2" style="width: 200px;">
-  <img src="src/assets/preview_search.png" alt="Movie Detail 2" style="width: 200px;">
+  <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 200px;">
 </div>
 
 ## Features
