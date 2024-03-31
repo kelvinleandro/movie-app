@@ -1,6 +1,7 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
+import { StatusBar } from "react-native";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import MainTab from "@/navigation/MainTab";
 import { FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
@@ -19,9 +20,11 @@ export default function App() {
   return (
     <PaperProvider>
       <FavoriteMoviesProvider>
-        <StatusBar style="light" />
+        <StatusBar barStyle={'light-content'} backgroundColor={COLORS.primary} />
         <NavigationContainer theme={MyTheme}>
-          <MainTab />
+          <SafeAreaProvider>
+            <MainTab />
+          </SafeAreaProvider>
         </NavigationContainer>
       </FavoriteMoviesProvider>
     </PaperProvider>

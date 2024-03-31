@@ -1,8 +1,8 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
-import Constants from "expo-constants";
 import { Button, IconButton } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import COLORS from "@/constants/colors";
 import useApi from "@/hooks/useApi";
@@ -15,7 +15,7 @@ import FetchingError from "@/components/UI/FetchingError";
 type Props = NativeStackScreenProps<ExploreStackParamList, "Explore">;
 
 const ExploreScreen = ({ navigation }: Props) => {
-  const [category, setCategory] = useState({ id: 0, name: "" });
+  const [category, setCategory] = useState({ id: 28, name: "Action" });
   const { data: genres, error } = useApi("fetchCategories");
   const [categoryModalVisible, setCategoryModalVisible] = useState(false);
 
@@ -33,10 +33,9 @@ const ExploreScreen = ({ navigation }: Props) => {
   }
 
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
-        marginTop: Constants.statusBarHeight,
         marginBottom: 8,
         padding: 12,
       }}
@@ -90,7 +89,7 @@ const ExploreScreen = ({ navigation }: Props) => {
         onDismiss={() => setCategoryModalVisible(false)}
         onItemPress={categoryItemPressHandler}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

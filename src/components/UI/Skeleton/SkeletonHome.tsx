@@ -59,7 +59,7 @@ const SkeletonHome = () => {
           height={(Dimensions.get("window").width * 4) / 9}
         />
         <Rect
-          x={Dimensions.get("window").width / 3 + 16}
+          x={Dimensions.get("window").width / 3 + 20}
           y={35}
           rx={Dimensions.get("window").width * 0.03}
           ry={Dimensions.get("window").width * 0.03}
@@ -68,7 +68,7 @@ const SkeletonHome = () => {
         />
 
         <Rect
-          x={2 * (Dimensions.get("window").width / 3 + 16)}
+          x={2 * (Dimensions.get("window").width / 3 + 20)}
           y={35}
           rx={Dimensions.get("window").width * 0.03}
           ry={Dimensions.get("window").width * 0.03}
