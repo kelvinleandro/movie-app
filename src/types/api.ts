@@ -12,7 +12,7 @@ interface Movie {
   runtime: number;
   vote_average: number;
   vote_count: number;
-  genre_ids: number[];
+  genres: Genre[];
 }
 
 interface CastMember {
@@ -23,4 +23,11 @@ interface CastMember {
   profile_path: string;
 }
 
-export { Genre, Movie, CastMember };
+interface CrewMember {
+  id: number;
+  name: string;
+  job: string;
+  department: string;
+}
+
+export { Genre, Movie, CastMember, CrewMember };

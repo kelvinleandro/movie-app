@@ -1,6 +1,6 @@
 import axiosInstance from "./instance";
 
-import {CastMember, Genre, Movie } from "@/types/api"
+import {CastMember, Genre, Movie, CrewMember } from "@/types/api"
 
 const fetchCategories = async (): Promise<Genre[]> => {
   try {
@@ -39,6 +39,16 @@ const fetchMovieCast = async (movieId: number): Promise<CastMember[]> => {
     return response.data.cast;
   } catch (error) {
     console.error(`Failed to fetch cast for movie ${movieId}:`, error);
+    throw error;
+  }
+};
+
+const fetchMovieCrew = async (movieId: number): Promise<CrewMember[]> => {
+  try {
+    const response = await axiosInstance.get<{ crew: CrewMember[] }>(`movie/${movieId}/credits`);
+    return response.data.crew;
+  } catch (error) {
+    console.error(`Failed to fetch crew for movie ${movieId}:`, error);
     throw error;
   }
 };
@@ -121,6 +131,7 @@ export {
   fetchCategories,
   fetchMovie,
   fetchMovieCast,
+  fetchMovieCrew,
   fetchMoviesByGenre,
   fetchNowPlayingMovies,
   fetchPopularMovies,

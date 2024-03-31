@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
@@ -19,11 +19,10 @@ import {
   Poster,
   Title,
   Synopsis,
-  InfoWrapper,
-  InfoText,
-  VoteWrapper,
-  VoteText,
   DetailSection,
+  ReleaseInfo,
+  Info,
+  Vote
 } from "./styles";
 import { ScreenView } from "@/components/UI/StyledComponents";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
@@ -37,18 +36,43 @@ type Props = NativeStackScreenProps<
 
 const MovieDetailScreen = ({ navigation, route }: Props) => {
   const id = route.params.id;
-  const { data: movie, isLoading: loadingMovie, error: errorMovie } = useApi("fetchMovie", id);
-  const { data: cast, isLoading: loadingCast, error: errorCast } = useApi("fetchMovieCast", id);
-  const { data: similar, isLoading: loadingSimilar, error: errorSimilar } = useApi("fetchSimilarMovies", id);
+  const {
+    data: movie,
+    isLoading: loadingMovie,
+    error: errorMovie,
+  } = useApi("fetchMovie", id);
+  const {
+    data: cast,
+    isLoading: loadingCast,
+    error: errorCast,
+  } = useApi("fetchMovieCast", id);
+  const {
+    data: crew,
+    isLoading: loadingCrew,
+    error: errorCrew,
+  } = useApi("fetchMovieCrew", id);
+  const {
+    data: similar,
+    isLoading: loadingSimilar,
+    error: errorSimilar,
+  } = useApi("fetchSimilarMovies", id);
+  const directors = useMemo(
+    () => crew?.filter((member) => member.job === "Director") || [],
+    [crew]
+  );
+  const writers = useMemo(
+    () => crew?.filter((member) => member.job === "Writer" || member.job == "Screenplay") || [],
+    [crew]
+  );
   const favoriteContext = useContext(FavoriteMoviesContext);
   const isFavorite = favoriteContext?.isFavorite(id);
 
-  if (loadingMovie || loadingCast || loadingSimilar) {
+  if (loadingMovie || loadingCast || loadingSimilar || loadingCrew) {
     return <SkeletonMovieDetail />;
   }
 
-  if (errorMovie || errorCast || errorSimilar) {
-    return <FetchingError />
+  if (errorMovie || errorCast || errorSimilar || errorCrew) {
+    return <FetchingError />;
   }
 
   return (
@@ -65,14 +89,14 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
       <DetailSection>
         <Title>{movie?.title}</Title>
 
-        <InfoWrapper>
-          <InfoText>{movie?.release_date.slice(0, 4)}</InfoText>
-          <InfoText>{formatRuntime(movie?.runtime)}</InfoText>
-          <VoteWrapper>
+        <ReleaseInfo.Wrapper>
+          <ReleaseInfo.Text>{movie?.release_date.slice(0, 4)}</ReleaseInfo.Text>
+          <ReleaseInfo.Text>{formatRuntime(movie?.runtime)}</ReleaseInfo.Text>
+          <Vote.Wrapper>
             <AntDesign name="star" size={20} color={COLORS.secondary} />
-            <VoteText>{movie?.vote_average}/10</VoteText>
-          </VoteWrapper>
-        </InfoWrapper>
+            <Vote.Text>{movie?.vote_average}/10</Vote.Text>
+          </Vote.Wrapper>
+        </ReleaseInfo.Wrapper>
 
         <Synopsis>{movie?.overview}</Synopsis>
 
@@ -96,6 +120,40 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
             {isFavorite ? "Remove from favorites" : "Add to Favorites"}
           </Button>
         </View>
+
+        <Info.Wrapper>
+          <Info.Label>
+            Genres:
+          </Info.Label>
+          {movie?.genres.map((item, index) => (
+            <React.Fragment key={item.id}>
+              {index !== 0 && <Info.Item>·</Info.Item>}
+              <Info.Item>{item.name}</Info.Item>
+            </React.Fragment>
+          ))}
+        </Info.Wrapper>
+
+        <Info.Wrapper>
+          <Info.Label>
+            {directors.length > 1 ? "Directors" : "Director"}:
+          </Info.Label>
+          {directors.map((item, index) => (
+            <React.Fragment key={item.id}>
+              {index !== 0 && <Info.Item>·</Info.Item>}
+              <Info.Item>{item.name}</Info.Item>
+            </React.Fragment>
+          ))}
+        </Info.Wrapper>
+
+        <Info.Wrapper>
+          <Info.Label>Screenplay:</Info.Label>
+          {writers.map((item, index) => (
+            <React.Fragment key={item.id}>
+              {index !== 0 && <Info.Item>·</Info.Item>}
+              <Info.Item>{item.name}</Info.Item>
+            </React.Fragment>
+          ))}
+        </Info.Wrapper>
 
         <HorizontalList
           data={cast?.slice(0, 10) as CastMember[]}

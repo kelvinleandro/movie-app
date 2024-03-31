@@ -33,13 +33,13 @@ const Synopsis = styled.Text`
   text-align: justify;
 `;
 
-const InfoWrapper = styled.View`
+const ReleaseInfoWrapper = styled.View`
   flex-direction: row;
   gap: 12px;
   margin: 6px 0px;
 `;
 
-const InfoText = styled.Text`
+const ReleaseInfoText = styled.Text`
   color: ${COLORS.text};
   font-weight: 500;
   font-size: 20px;
@@ -57,14 +57,49 @@ const VoteText = styled.Text`
   font-size: 20px;
 `;
 
+const InfoWrapper = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+`;
+
+const InfoLabel = styled.Text`
+  color: ${COLORS.text};
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const InfoItem = styled.Text`
+  color: ${COLORS.secondary};
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+const ReleaseInfo = {
+  Wrapper: ReleaseInfoWrapper,
+  Text: ReleaseInfoText,
+}
+
+const Vote = {
+  Wrapper: VoteWrapper,
+  Text: VoteText,
+}
+
+const Info = {
+  Wrapper: InfoWrapper,
+  Label: InfoLabel,
+  Item: InfoItem,
+}
+
+
 export {
   PosterWrapper,
   Poster,
   DetailSection,
   Title,
   Synopsis,
-  InfoWrapper,
-  InfoText,
-  VoteWrapper,
-  VoteText,
+  Vote, 
+  ReleaseInfo,
+  Info,
 };
