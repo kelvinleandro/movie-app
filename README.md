@@ -16,7 +16,7 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 ## Features
 
 - **Explore Movies:** Browse through a list of movies based fetched from the TMDB API.
-- **Movie Details:** View detailed information about the movies, including synopsis, cast, year, runtime and similar movies.
+- **Movie Details:** View detailed information about the movies, including synopsis, cast and crew, year, runtime and similar movies.
 - **Favorites:** Mark movies as favorites (Note: Favorites are not persisted across app reloads).
 - **Search Functionality:** Search for movies using the TMDB API.
 
