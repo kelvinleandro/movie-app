@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const ACCESS_TOKEN = "place_sour_access_token_here";
+const ACCESS_TOKEN = "place_your_access_token_here";
 const BASE_URL = "https://api.themoviedb.org/3/";
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
