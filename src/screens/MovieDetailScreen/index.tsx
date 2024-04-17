@@ -3,6 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
 import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import useApi from "@/hooks/useApi";
 import {
@@ -24,7 +25,6 @@ import {
   Info,
   Vote
 } from "./styles";
-import { ScreenView } from "@/components/UI/StyledComponents";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import SkeletonMovieDetail from "@/components/UI/Skeleton/SkeletonMovieDetail";
 import FetchingError from "@/components/UI/FetchingError";
@@ -76,7 +76,11 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
   }
 
   return (
-    <ScreenView>
+    <SafeAreaView style={{
+      flex: 1,
+      paddingHorizontal: 12,
+      marginBottom: 8,
+    }}>
       <PosterWrapper>
         <Poster
           source={{
@@ -174,7 +178,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
           }}
         />
       </DetailSection>
-    </ScreenView>
+    </SafeAreaView>
   );
 };
 
