@@ -13,9 +13,10 @@ import { AuthStackParamList } from "@/navigation/AuthStack";
 import { ActivityIndicator, Button } from "react-native-paper";
 
 import FormInput from "@/components/UI/FormInput";
-import { registerUser } from "@/utils/firebase";
+import { createUserDoc, registerUser } from "@/utils/firebase";
 import { AuthContext } from "@/context/AuthContext";
 import COLORS from "@/constants/colors";
+import { User } from "@/types/firebase";
 
 interface SignUpFields {
   email: string;
@@ -43,13 +44,19 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [isSigningUp, setisSigningUp] = useState(false);
 
   const signUpHandler = async (credentials: SignUpFields) => {
-    console.log(credentials);
+    // console.log(credentials);
     setisSigningUp(true);
     try {
       const response = await registerUser(credentials.email, credentials.password);
       const token = await response.user.getIdToken();
       authCtx.authenticate(token);
-      Alert.alert('Sucessful registration. Go back to login.')
+      // try to create a document in firestore collection
+      const user: User = {
+        uid: response.user.uid,
+        firstName: credentials.firstName,
+        lastName: credentials.lastName
+      };
+      await createUserDoc(user);
     } catch (error) {
       if (error instanceof Error && error.message.includes('auth/email-already-in-use')) {
         Alert.alert("Registration Error", "This email address is already in use. Please use a different email address.");
@@ -79,8 +86,12 @@ const SignUpScreen = ({ navigation }: Props) => {
               }}
               rules={{
                 required: "Required",
+                validate: {
+                  trim: value => value.trim() === value,
+                  minLength: value => value.trim().length > 0 || "It must be at least 1 character"
+                }
               }}
-            />
+              />
           </View>
           <View style={styles.rowItem}>
             <FormInput
@@ -92,6 +103,10 @@ const SignUpScreen = ({ navigation }: Props) => {
               }}
               rules={{
                 required: "Required",
+                validate: {
+                  trim: value => value.trim() === value,
+                  minLength: value => value.trim().length > 0 || "It must be at least 1 character"
+                }
               }}
             />
           </View>

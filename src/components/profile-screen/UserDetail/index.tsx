@@ -4,11 +4,11 @@ import { Avatar } from "react-native-paper";
 
 import COLORS from "@/constants/colors";
 
-const UserDetail = () => {
+const UserDetail = ({firstName, lastName}: {firstName: string, lastName: string}) => {
   return (
     <Container>
-      <Avatar.Text size={72} label="DU" />
-      <UserName>Dummy User</UserName>
+      <Avatar.Text size={72} label={firstName[0] + lastName[0]} />
+      <UserName>{`${firstName} ${lastName}`}</UserName>
     </Container>
   );
 };
