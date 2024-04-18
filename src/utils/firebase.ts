@@ -1,6 +1,6 @@
 import { FIREBASE_AUTH, FIRESTORE } from 'firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { arrayRemove, arrayUnion, doc, getDoc, runTransaction, setDoc } from 'firebase/firestore/lite';
+import { createUserWithEmailAndPassword, deleteUser, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc } from 'firebase/firestore/lite';
 import { UserDocData, User } from '@/types/firebase';
 
 /**
@@ -136,9 +136,36 @@ async function toggleMovieId(uid: string, movieId: number) {
  * @returns The UID of the current user or null if no user is logged in.
  */
 
-function getCurrentUserUid () {
+function getCurrentUserUid() {
   const user = FIREBASE_AUTH.currentUser;
   return user ? user.uid : "";
+};
+
+/**
+ * Deletes the current user's account and their associated document in Firestore.
+ */
+async function deleteCurrentUser() {
+  const user = FIREBASE_AUTH.currentUser;
+
+  if (!user) {
+    console.error("No user is currently logged in.");
+    throw new Error("No user is currently logged in.");
+  }
+
+  try {
+    // First, delete the Firestore document
+    const userDocRef = doc(FIRESTORE, 'users', user.uid);
+    await deleteDoc(userDocRef);
+    console.log("Firestore document deleted successfully.");
+
+    // Then, delete the Firebase user
+    await deleteUser(user);
+    console.log("Firebase user account deleted successfully.");
+  } catch (error) {
+    console.error("Error deleting user data:", error);
+    // If document deletion succeeds but user deletion fails, handle accordingly
+    throw error;
+  }
 };
 
 export {
@@ -149,4 +176,5 @@ export {
   getUserDoc,
   toggleMovieId,
   getCurrentUserUid,
+  deleteCurrentUser,
 }

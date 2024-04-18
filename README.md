@@ -1,6 +1,6 @@
 # Movie App
 
-A simple yet powerful React Native app to explore movies, utilizing the TMDB API. Built with Expo, TypeScript, and styled with styled-components. This app allows users to browse movies, view detailed information, and mark movies as favorites.
+A comprehensive React Native application for exploring movies, featuring authentication and user data storage using Firebase. Utilizes the TMDB API, styled with styled-components, and built with Expo and TypeScript. This app allows users to browse movies, view detailed information, and mark movies as favorites.
 
 ## Preview
 <div style="display: flex; flex-direction:row; flex-wrap: wrap;">
@@ -15,10 +15,11 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 
 ## Features
 
-- **Explore Movies:** Browse through a list of movies based fetched from the TMDB API.
-- **Movie Details:** View detailed information about the movies, including synopsis, cast and crew, year, runtime and similar movies.
-- **Favorites:** Mark movies as favorites (Note: Favorites are not persisted across app reloads).
+- **Explore Movies:** Browse through a list of movies fetched from the TMDB API.
+- **Movie Details:** View detailed information about the movies, including synopsis, cast and crew, year, runtime, and similar movies.
+- **Favorites:** Mark movies as favorites and save them using Firebase Firestore.
 - **Search Functionality:** Search for movies using the TMDB API.
+- **Authentication:** Handle user authentication with Firebase Authentication.
 
 ## Tech Stack
 
@@ -27,6 +28,7 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 - **Styling:** Styled-Components
 - **API Integration:** Axios for TMDB API requests
 - **UI Components:** React Native Paper
+- **Backend:** Firebase (Authentication and Firestore)
 
 ## Getting Started
 
@@ -35,6 +37,7 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 - Node.js installed on your machine
 - An API access token from TMDB for fetching movies
 - Expo Go installed on your phone or an Android/iOS emulator
+- A Firebase project with Authentication enabled and Firestore with a collection called `users`
 
 ### Installation
 
@@ -50,7 +53,18 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
    ```js
    const ACCESS_TOKEN = "place_your_access_token_here";
    ```
-4. Start the app:
+4. Set up Firebase in the project:
+    - Create a Firebase project in the Firebase console.
+    - Enable Authentication and Firestore in your Firebase project.
+    - In the Firestore database, create a collection named `users`.
+    - Add your Firebase project configuration in `./firebaseConfig.ts`:
+      ```js
+      const firebaseConfig = {
+        // your firebase project configuration
+      };
+      ```
+    - You can find your firebaseConfig in the Firebase console under project settings.
+5. Start the app:
    ```sh
    npm start
    ```
@@ -70,7 +84,7 @@ A simple yet powerful React Native app to explore movies, utilizing the TMDB API
 
 ## Note
 
-This app is for pratice purposes and does not persist favorites data across app reloads. To fully utilize the TMDB API, you must obtain and configure your own API access token.
+This app is for practice purposes and now includes Firebase to persist favorites data across app reloads. To fully utilize the TMDB API and Firebase features, you must obtain and configure your own API access token and Firebase project configuration.
 
 ## License
 
