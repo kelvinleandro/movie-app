@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { PaperProvider } from "react-native-paper";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as SplashScreen from "expo-splash-screen"
+import * as SplashScreen from "expo-splash-screen";
 
 import MainTab from "@/navigation/MainTab";
 import AuthStack from "@/navigation/AuthStack";
@@ -22,8 +22,8 @@ const MyTheme = {
 };
 
 const Navigation = () => {
-  const {isAuthenticated} = useContext(AuthContext);
-  
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <NavigationContainer theme={MyTheme}>
       {isAuthenticated ? <MainTab /> : <AuthStack />}
@@ -38,40 +38,43 @@ const Root = () => {
   useEffect(() => {
     SplashScreen.preventAutoHideAsync();
   }, []);
-  
+
   useEffect(() => {
     async function getToken() {
       const storedToken = await AsyncStorage.getItem("token");
-      if(storedToken){
+      if (storedToken) {
         authCtx.authenticate(storedToken);
       }
       setIsTryingLogin(false);
       SplashScreen.hideAsync();
     }
     getToken();
-  }, [])
+  }, []);
 
-  if(isTryingLogin){
+  if (isTryingLogin) {
     return null;
   }
 
-  return <Navigation />
-}
+  return <Navigation />;
+};
 
 export default function App() {
   return (
     <PaperProvider>
-      <FavoriteMoviesProvider>
-        <AuthContextProvider>
-          <StatusBar barStyle={'light-content'} backgroundColor={COLORS.primary} />
+      <AuthContextProvider>
+        <FavoriteMoviesProvider>
+          <StatusBar
+            barStyle={"light-content"}
+            backgroundColor={COLORS.primary}
+          />
           {/* <NavigationContainer theme={MyTheme}> */}
-            <SafeAreaProvider>
-              {/* <MainTab /> */}
-              <Root />
-            </SafeAreaProvider>
-        </AuthContextProvider>
-        {/* </NavigationContainer> */}
-      </FavoriteMoviesProvider>
+          <SafeAreaProvider>
+            {/* <MainTab /> */}
+            <Root />
+          </SafeAreaProvider>
+          {/* </NavigationContainer> */}
+        </FavoriteMoviesProvider>
+      </AuthContextProvider>
     </PaperProvider>
   );
 }

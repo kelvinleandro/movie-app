@@ -1,5 +1,7 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { Movie } from "@/types/api";
+import { getCurrentUserUid, getUserDoc, toggleMovieId } from "@/utils/firebase";
+import { fetchMoviesByIds } from "@/api/helper";
 
 interface FavoriteMoviesContextType {
   favoriteMovies: Movie[];
@@ -27,11 +29,23 @@ export const FavoriteMoviesProvider = ({
         return [...currentFavorites, movie];
       }
     });
+    toggleMovieId(getCurrentUserUid(), movie.id);
   };
 
   const isFavorite = (movieId: number) => {
     return favoriteMovies.some(movie => movie.id === movieId);
   };
+
+  useEffect(() => {
+    const loadData = async () => {
+      const userDoc = await getUserDoc(getCurrentUserUid());
+      const cloudMovies = await fetchMoviesByIds(userDoc.moviesId);
+      if (cloudMovies.length > 0) {
+        setFavoriteMovies(cloudMovies);
+      }
+    }
+    loadData();
+  }, [])
 
   return (
     <FavoriteMoviesContext.Provider value={{ favoriteMovies, toggleFavorite, isFavorite }}>

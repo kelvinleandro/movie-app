@@ -22,6 +22,22 @@ const fetchMovie = async (movieId: string): Promise<Movie> => {
   }
 }
 
+const fetchMoviesByIds = async (movieIds: number[]): Promise<Movie[]> => {
+  try {
+    // Create an array of promises using the existing fetchMovie function
+    const moviePromises = movieIds.map(id => fetchMovie(id.toString()));
+
+    // Resolve all promises simultaneously
+    const results = await Promise.all(moviePromises);
+
+    // Extract the movie data from each resolved promise
+    return results;
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    throw error;
+  }
+};
+
 const fetchRandomPopularMovie = async (): Promise<Movie> => {
   try {
     const response = await axiosInstance.get(`movie/popular`);
@@ -130,6 +146,7 @@ const fetchMoviesByQuery = async (query: string): Promise<Movie[]> => {
 export {
   fetchCategories,
   fetchMovie,
+  fetchMoviesByIds,
   fetchMovieCast,
   fetchMovieCrew,
   fetchMoviesByGenre,
