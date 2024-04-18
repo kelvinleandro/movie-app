@@ -7,12 +7,14 @@ import {
   Platform,
   StyleSheet,
   Alert,
+  Dimensions,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/navigation/AuthStack";
 import { Button, ActivityIndicator } from "react-native-paper";
 
 import FormInput from "@/components/UI/FormInput";
+import BouncingImage from "@/components/UI/BouncingImage";
 import { loginUser } from "@/utils/firebase";
 import { AuthContext } from "@/context/AuthContext";
 import COLORS from "@/constants/colors";
@@ -38,16 +40,21 @@ const LoginScreen = ({ navigation }: Props) => {
   const loginHandler = async (credentials: LoginFields) => {
     console.log(credentials);
     setIsLogging(true);
-    try{
+    try {
       const response = await loginUser(credentials.email, credentials.password);
       const token = await response.user.getIdToken();
       authCtx.authenticate(token);
-    }
-    catch(error){
-      if (error instanceof Error && error.message.includes('auth/invalid-credential')) {
-        Alert.alert("Login Error", "Invalid credentials. Please check your email and password.");
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        error.message.includes("auth/invalid-credential")
+      ) {
+        Alert.alert(
+          "Login Error",
+          "Invalid credentials. Please check your email and password."
+        );
       } else {
-        console.log('Login Error:', error);
+        console.log("Login Error:", error);
         Alert.alert("Login Error", "Failed to Login. Please try again later.");
       }
     }
@@ -60,6 +67,15 @@ const LoginScreen = ({ navigation }: Props) => {
       style={{ flex: 1 }}
     >
       <View style={styles.root}>
+        <BouncingImage
+          source={require("@/assets/clapperboard.png")}
+          style={{
+            width: Dimensions.get("window").width * 0.5,
+            height: Dimensions.get("window").width * 0.5,
+            resizeMode: 'contain',
+          }}
+        />
+
         <Text style={styles.screenTitle}>Login</Text>
 
         <FormInput
@@ -104,7 +120,7 @@ const LoginScreen = ({ navigation }: Props) => {
           buttonColor={COLORS.secondary}
           textColor={COLORS.text}
         >
-          {!isLogging ? "Login" : (<ActivityIndicator color={COLORS.text} />)}
+          {!isLogging ? "Login" : <ActivityIndicator color={COLORS.text} />}
         </Button>
 
         <Button

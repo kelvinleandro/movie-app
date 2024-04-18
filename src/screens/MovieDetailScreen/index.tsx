@@ -143,7 +143,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
           <Info.Wrapper>
             <Info.Label>Genres:</Info.Label>
             {movie?.genres.map((item, index) => (
-              <React.Fragment key={item.id}>
+              <React.Fragment key={index}>
                 {index !== 0 && <Info.Item>·</Info.Item>}
                 <Info.Item>{item.name}</Info.Item>
               </React.Fragment>
@@ -155,7 +155,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
               {directors.length > 1 ? "Directors" : "Director"}:
             </Info.Label>
             {directors.map((item, index) => (
-              <React.Fragment key={item.id}>
+              <React.Fragment key={index}>
                 {index !== 0 && <Info.Item>·</Info.Item>}
                 <Info.Item>{item.name}</Info.Item>
               </React.Fragment>
@@ -165,7 +165,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
           <Info.Wrapper>
             <Info.Label>Screenplay:</Info.Label>
             {writers.map((item, index) => (
-              <React.Fragment key={item.id}>
+              <React.Fragment key={index}>
                 {index !== 0 && <Info.Item>·</Info.Item>}
                 <Info.Item>{item.name}</Info.Item>
               </React.Fragment>
