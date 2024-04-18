@@ -10,6 +10,7 @@ import { ProfileStackParamList } from "@/types/navigation";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import { Movie } from "@/types/api";
 import { getCurrentUserUid, getUserDoc } from "@/utils/firebase";
+import SkeletonProfile from "@/components/UI/Skeleton/SkeletonProfile";
 
 type Props = NativeStackScreenProps<ProfileStackParamList, "Profile">;
 
@@ -19,6 +20,7 @@ const ProfileScreen = ({ navigation }: Props) => {
     lastName: "",
     moviesId: [] as number[],
   })
+  const [isLoading, setIsLoading] = useState(false);
   const favoriteContext = useContext(FavoriteMoviesContext)
 
   const handleListItemPress = (id: number) => {
@@ -27,11 +29,17 @@ const ProfileScreen = ({ navigation }: Props) => {
 
   useEffect(() => {
     const fetchUserDoc = async () => {
+      setIsLoading(true);
       const userDoc = await getUserDoc(getCurrentUserUid());
       setUser(userDoc);
+      setIsLoading(false);
     }
     fetchUserDoc();
   }, [])
+
+  if (isLoading) {
+    return <SkeletonProfile />
+  }
 
   return (
     <SafeAreaView
