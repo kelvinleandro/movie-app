@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { ProfileStackParamList } from "@/types/navigation";
 import ProfileScreen from "@/screens/ProfileScreen/";
 import MovieDetailScreen from "@/screens/MovieDetailScreen";
 import FullCastScreen from "@/screens/FullCastScreen";
+import SettingsScreen from "@/screens/SettingsScreen";
 import COLORS from "@/constants/colors";
 import { logoutUser } from "@/utils/firebase";
 import { AuthContext } from "@/context/AuthContext";
@@ -28,24 +29,26 @@ const ProfileStack = () => {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: "Profile",
           headerTitleAlign: "center",
           headerRight: () => (
-            <MaterialCommunityIcons
-              name="logout"
+            <MaterialIcons
+              name="settings"
               color={COLORS.secondary}
               size={24}
-              onPress={() => {
-                logoutUser();
-                authCtx.logout();
-              }}
+              onPress={() => navigation.navigate("Settings")}
             />
           ),
-        }}
+        })}
       />
       <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
       <Stack.Screen name="FullCast" component={FullCastScreen} />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{ headerTitle: "Settings", headerTitleAlign: "center" }}
+      />
     </Stack.Navigator>
   );
 };

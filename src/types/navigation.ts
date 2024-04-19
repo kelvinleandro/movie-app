@@ -20,6 +20,7 @@ export type ProfileStackParamList = {
   Profile: undefined;
   MovieDetail: MovieDetailScreenProps;
   FullCast: FullCastScreenProps;
+  Settings: undefined;
 };
 
 export type MainTabParamList = {
