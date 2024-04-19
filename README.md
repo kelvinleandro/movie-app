@@ -4,6 +4,8 @@ A comprehensive React Native application for exploring movies, featuring authent
 
 ## Preview
 <div style="display: flex; flex-direction:row; flex-wrap: wrap;">
+  <img src="src/assets/preview_login.png" alt="Login screen" style="width: 200px;" />
+  <img src="src/assets/preview_signup.png" alt="Signup screen" style="width: 200px;" />
   <img src="src/assets/preview_home.png" alt="Home screen" style="width: 200px;" />
   <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 200px;">
   <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 200px;">
