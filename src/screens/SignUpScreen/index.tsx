@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/navigation/AuthStack";
-import { ActivityIndicator, Button } from "react-native-paper";
+import { ActivityIndicator, Button, TextInput } from "react-native-paper";
 
 import FormInput from "@/components/UI/FormInput";
 import { createUserDoc, registerUser } from "@/utils/firebase";
@@ -42,6 +42,17 @@ const SignUpScreen = ({ navigation }: Props) => {
   const password = watch("password");
   const authCtx = useContext(AuthContext);
   const [isSigningUp, setisSigningUp] = useState(false);
+  const [pwdsVisible, setPwdsVisible] = useState({
+    pwd: false,
+    confirmPwd: false
+  })
+
+  const pwdsVisibilityHandler = (field: keyof typeof pwdsVisible) => {
+    setPwdsVisible(current => ({
+      ...current,
+      [field]: !current[field]
+    }));
+  }
 
   const signUpHandler = async (credentials: SignUpFields) => {
     // console.log(credentials);
@@ -148,7 +159,13 @@ const SignUpScreen = ({ navigation }: Props) => {
           textInputConfig={{
             label: "Password",
             placeholder: "Type your password",
-            secureTextEntry: true,
+            secureTextEntry: !pwdsVisible.pwd,
+            right: (
+              <TextInput.Icon
+                icon={!pwdsVisible.pwd ? "eye" : "eye-off"}
+                onPress={() => pwdsVisibilityHandler('pwd')}
+              />
+            ),
           }}
           rules={{
             required: "Password is required",
@@ -165,7 +182,13 @@ const SignUpScreen = ({ navigation }: Props) => {
           textInputConfig={{
             label: "Confirm Password",
             placeholder: "Repeat your password",
-            secureTextEntry: true,
+            secureTextEntry: !pwdsVisible.confirmPwd,
+            right: (
+              <TextInput.Icon
+                icon={!pwdsVisible.confirmPwd ? "eye" : "eye-off"}
+                onPress={() => pwdsVisibilityHandler('confirmPwd')}
+              />
+            ),
           }}
           rules={{
             validate: (value) => value === password || "Password does not match",

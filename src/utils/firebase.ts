@@ -131,6 +131,16 @@ async function toggleMovieId(uid: string, movieId: number) {
 };
 
 /**
+ * Determines if a movie is marked as favorite (the movieId is in Firestore data)
+ * @param movieId The movie id to check in Firestore data
+ * @returns a boolean determining if it's favorite
+ */
+async function isMovieFavorite(movieId: number) {
+  const data = await getUserDoc(getCurrentUserUid());
+  return data.moviesId.includes(movieId);
+}
+
+/**
  * Gets the UID of the currently logged-in user.
  * 
  * @returns The UID of the current user or null if no user is logged in.
@@ -177,4 +187,5 @@ export {
   toggleMovieId,
   getCurrentUserUid,
   deleteCurrentUser,
+  isMovieFavorite,
 }

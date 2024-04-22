@@ -11,6 +11,7 @@ import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import { Movie } from "@/types/api";
 import { getCurrentUserUid, getUserDoc } from "@/utils/firebase";
 import SkeletonProfile from "@/components/UI/Skeleton/SkeletonProfile";
+// import { fetchMoviesByIds } from "@/api/helper";
 
 type Props = NativeStackScreenProps<ProfileStackParamList, "Profile">;
 
@@ -19,9 +20,10 @@ const ProfileScreen = ({ navigation }: Props) => {
     firstName: "",
     lastName: "",
     moviesId: [] as number[],
-  })
+  });
+  // const [favMovies, setFavMovies] = useState<Movie[]>();
   const [isLoading, setIsLoading] = useState(false);
-  const favoriteContext = useContext(FavoriteMoviesContext)
+  const favoriteContext = useContext(FavoriteMoviesContext);
 
   const handleListItemPress = (id: number) => {
     navigation.navigate("MovieDetail", { id: id });
@@ -32,19 +34,20 @@ const ProfileScreen = ({ navigation }: Props) => {
       setIsLoading(true);
       const userDoc = await getUserDoc(getCurrentUserUid());
       setUser(userDoc);
+      // const movies = await fetchMoviesByIds(userDoc.moviesId);
+      // setFavMovies(movies);
+      // console.log(favoriteContext.favoriteMovies);
       setIsLoading(false);
-    }
+    };
     fetchUserDoc();
-  }, [])
+  }, []);
 
   if (isLoading) {
-    return <SkeletonProfile />
+    return <SkeletonProfile />;
   }
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, marginBottom: 8, }}
-    >
+    <SafeAreaView style={{ flex: 1, marginBottom: 8 }}>
       <UserDetail firstName={user.firstName} lastName={user.lastName} />
       <View style={{ paddingHorizontal: 12, width: "100%" }}>
         <Text
@@ -57,7 +60,11 @@ const ProfileScreen = ({ navigation }: Props) => {
         >
           Favorite Movies
         </Text>
-        <ThreeColumnList data={favoriteContext?.favoriteMovies as Movie[]} onItemPress={handleListItemPress} />
+        <ThreeColumnList
+          data={favoriteContext.favoriteMovies as Movie[]}
+          onItemPress={handleListItemPress}
+        />
+        {/* <ThreeColumnList data={favMovies as Movie[]} onItemPress={handleListItemPress} /> */}
       </View>
     </SafeAreaView>
   );

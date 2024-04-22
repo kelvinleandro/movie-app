@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/navigation/AuthStack";
-import { Button, ActivityIndicator } from "react-native-paper";
+import { Button, ActivityIndicator, TextInput } from "react-native-paper";
 
 import FormInput from "@/components/UI/FormInput";
 import BouncingImage from "@/components/UI/BouncingImage";
@@ -36,6 +36,7 @@ const LoginScreen = ({ navigation }: Props) => {
   } = useForm<LoginFields>();
   const authCtx = useContext(AuthContext);
   const [isLogging, setIsLogging] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const loginHandler = async (credentials: LoginFields) => {
     console.log(credentials);
@@ -72,7 +73,7 @@ const LoginScreen = ({ navigation }: Props) => {
           style={{
             width: Dimensions.get("window").width * 0.5,
             height: Dimensions.get("window").width * 0.5,
-            resizeMode: 'contain',
+            resizeMode: "contain",
           }}
         />
 
@@ -101,7 +102,13 @@ const LoginScreen = ({ navigation }: Props) => {
           textInputConfig={{
             label: "Password",
             placeholder: "Type your password",
-            secureTextEntry: true,
+            secureTextEntry: !passwordVisible,
+            right: (
+              <TextInput.Icon
+                icon={!passwordVisible ? "eye" : "eye-off"}
+                onPress={() => setPasswordVisible(!passwordVisible)}
+              />
+            ),
           }}
           rules={{
             required: "Password is required",

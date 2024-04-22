@@ -8,9 +8,11 @@ import * as SplashScreen from "expo-splash-screen";
 
 import MainTab from "@/navigation/MainTab";
 import AuthStack from "@/navigation/AuthStack";
-import { FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
+import { FavoriteMoviesContext, FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
 import { AuthContext, AuthContextProvider } from "@/context/AuthContext";
 import COLORS from "@/constants/colors";
+import { getCurrentUserUid, getUserDoc } from "@/utils/firebase";
+import { fetchMoviesByIds } from "@/api/helper";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -23,7 +25,6 @@ const MyTheme = {
 
 const Navigation = () => {
   const { isAuthenticated } = useContext(AuthContext);
-
   return (
     <NavigationContainer theme={MyTheme}>
       {isAuthenticated ? <MainTab /> : <AuthStack />}
@@ -34,22 +35,45 @@ const Navigation = () => {
 const Root = () => {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
+  const favCtx = useContext(FavoriteMoviesContext);
 
   useEffect(() => {
     SplashScreen.preventAutoHideAsync();
   }, []);
 
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     if (authCtx.isAuthenticated){
+  //       const userDoc = await getUserDoc(getCurrentUserUid());
+  //       const cloudMovies = await fetchMoviesByIds(userDoc.moviesId);
+  //       if (cloudMovies.length > 0) {
+  //         favCtx.setFavoriteMovies(cloudMovies);
+  //       }
+  //     }
+  //   }
+  //   loadData();
+  // }, [authCtx.isAuthenticated]);
+
   useEffect(() => {
-    async function getToken() {
+    const loadData = async () => {
+      const userDoc = await getUserDoc(getCurrentUserUid());
+      const cloudMovies = await fetchMoviesByIds(userDoc.moviesId);
+      if (cloudMovies.length > 0) {
+        favCtx.setFavoriteMovies(cloudMovies);
+      }
+    }
+
+    const getToken = async () => {
       const storedToken = await AsyncStorage.getItem("token");
       if (storedToken) {
         authCtx.authenticate(storedToken);
+        await loadData();
       }
       setIsTryingLogin(false);
       SplashScreen.hideAsync();
     }
     getToken();
-  }, []);
+  }, [authCtx.isAuthenticated]);
 
   if (isTryingLogin) {
     return null;
@@ -67,12 +91,9 @@ export default function App() {
             barStyle={"light-content"}
             backgroundColor={COLORS.primary}
           />
-          {/* <NavigationContainer theme={MyTheme}> */}
           <SafeAreaProvider>
-            {/* <MainTab /> */}
             <Root />
           </SafeAreaProvider>
-          {/* </NavigationContainer> */}
         </FavoriteMoviesProvider>
       </AuthContextProvider>
     </PaperProvider>

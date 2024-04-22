@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AntDesign } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
@@ -28,7 +28,11 @@ import {
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import SkeletonMovieDetail from "@/components/UI/Skeleton/SkeletonMovieDetail";
 import FetchingError from "@/components/UI/FetchingError";
-import { getCurrentUserUid, toggleMovieId } from "@/utils/firebase";
+import {
+  getCurrentUserUid,
+  toggleMovieId,
+  isMovieFavorite,
+} from "@/utils/firebase";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,
@@ -69,7 +73,7 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
     [crew]
   );
   const favoriteContext = useContext(FavoriteMoviesContext);
-  const isFavorite = favoriteContext?.isFavorite(id);
+  const isFavorite = favoriteContext.isFavorite(id);
 
   if (loadingMovie || loadingCast || loadingSimilar || loadingCrew) {
     return <SkeletonMovieDetail />;
