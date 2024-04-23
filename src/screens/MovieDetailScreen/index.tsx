@@ -28,11 +28,6 @@ import {
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import SkeletonMovieDetail from "@/components/UI/Skeleton/SkeletonMovieDetail";
 import FetchingError from "@/components/UI/FetchingError";
-import {
-  getCurrentUserUid,
-  toggleMovieId,
-  isMovieFavorite,
-} from "@/utils/firebase";
 
 type Props = NativeStackScreenProps<
   ExploreStackParamList | HomeStackParamList | ProfileStackParamList,

@@ -11,7 +11,6 @@ import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import { Movie } from "@/types/api";
 import { getCurrentUserUid, getUserDoc } from "@/utils/firebase";
 import SkeletonProfile from "@/components/UI/Skeleton/SkeletonProfile";
-// import { fetchMoviesByIds } from "@/api/helper";
 
 type Props = NativeStackScreenProps<ProfileStackParamList, "Profile">;
 
@@ -21,7 +20,6 @@ const ProfileScreen = ({ navigation }: Props) => {
     lastName: "",
     moviesId: [] as number[],
   });
-  // const [favMovies, setFavMovies] = useState<Movie[]>();
   const [isLoading, setIsLoading] = useState(false);
   const favoriteContext = useContext(FavoriteMoviesContext);
 
@@ -34,9 +32,6 @@ const ProfileScreen = ({ navigation }: Props) => {
       setIsLoading(true);
       const userDoc = await getUserDoc(getCurrentUserUid());
       setUser(userDoc);
-      // const movies = await fetchMoviesByIds(userDoc.moviesId);
-      // setFavMovies(movies);
-      // console.log(favoriteContext.favoriteMovies);
       setIsLoading(false);
     };
     fetchUserDoc();
@@ -64,7 +59,6 @@ const ProfileScreen = ({ navigation }: Props) => {
           data={favoriteContext.favoriteMovies as Movie[]}
           onItemPress={handleListItemPress}
         />
-        {/* <ThreeColumnList data={favMovies as Movie[]} onItemPress={handleListItemPress} /> */}
       </View>
     </SafeAreaView>
   );

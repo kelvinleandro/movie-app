@@ -9,9 +9,9 @@ const FetchingError = () => {
     <Container>
       <Title>oops!!</Title>
       <Subtitle>it was not possible to fetch the data</Subtitle>
-      <Image source={require('@/assets/man.png')} resizeMode="contain" style={{
+      <Image source={require('@/assets/guy_error.png')} resizeMode="contain" style={{
         width: Dimensions.get("window").width * 0.7,
-        height: Dimensions.get("window").width * 0.7
+        height: Dimensions.get("window").width * 0.7 * 4 / 5,
       }} />
     </Container>
   );

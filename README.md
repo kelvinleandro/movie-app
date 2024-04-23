@@ -3,16 +3,9 @@
 A comprehensive React Native application for exploring movies, featuring authentication and user data storage using Firebase. Utilizes the TMDB API, styled with styled-components, and built with Expo and TypeScript. This app allows users to browse movies, view detailed information, and mark movies as favorites.
 
 ## Preview
-<div style="display: flex; flex-direction:row; flex-wrap: wrap;">
-  <img src="src/assets/preview_login.png" alt="Login screen" style="width: 200px;" />
-  <img src="src/assets/preview_signup.png" alt="Signup screen" style="width: 200px;" />
-  <img src="src/assets/preview_home.png" alt="Home screen" style="width: 200px;" />
-  <img src="src/assets/preview_explore.png" alt="Explore screen" style="width: 200px;">
-  <img src="src/assets/preview_profile.png" alt="Profile screen" style="width: 200px;">
-  <img src="src/assets/preview_search.png" alt="Movie Detail 2" style="width: 200px;">
-  <img src="src/assets/preview_movie_detail_1.png" alt="Movie detail 1" style="width: 200px;">
-  <img src="src/assets/preview_movie_detail_2.png" alt="Movie Detail 2" style="width: 200px;">
-  <img src="src/assets/preview_fullcast.png" alt="Full cast screen" style="width: 200px;">
+<div style="display: flex; flex-direction:row; flex-wrap: wrap; gap: 12px;">
+  <img src="src/assets/set_preview_1.png" alt="Screens preview" />
+  <img src="src/assets/set_preview_2.png" alt="Screens preview" />
 </div>
 
 ## Features
