@@ -12,7 +12,7 @@ const fetchCategories = async (): Promise<Genre[]> => {
   }
 };
 
-const fetchMovie = async (movieId: string): Promise<Movie> => {
+const fetchMovie = async (movieId: number): Promise<Movie> => {
   try {
     const response = await axiosInstance.get(`movie/${movieId}`);
     return response.data as Movie;
@@ -25,7 +25,7 @@ const fetchMovie = async (movieId: string): Promise<Movie> => {
 const fetchMoviesByIds = async (movieIds: number[]): Promise<Movie[]> => {
   try {
     // Create an array of promises using the existing fetchMovie function
-    const moviePromises = movieIds.map(id => fetchMovie(id.toString()));
+    const moviePromises = movieIds.map(id => fetchMovie(id));
 
     // Resolve all promises simultaneously
     const results = await Promise.all(moviePromises);

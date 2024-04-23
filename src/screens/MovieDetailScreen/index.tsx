@@ -119,8 +119,26 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
           <Synopsis>{movie?.overview}</Synopsis>
 
           <View
-            style={{ width: "100%", alignItems: "center", marginVertical: 12 }}
+            style={{ width: "100%", alignItems: "center", marginVertical: 12, gap: 12 }}
           >
+            <Button
+              mode="contained"
+              icon="play"
+              textColor={COLORS.primary}
+              buttonColor={COLORS.text}
+              onPress={() => {}}
+              accessibilityLabel="Watch Now"
+              style={{
+                width: "95%",
+                paddingVertical: 2,
+                borderColor: COLORS.text,
+                borderRadius: 12,
+              }}
+              labelStyle={{ fontSize: 18, fontWeight: "600" }}
+            >
+              Watch Now
+            </Button>
+
             <Button
               mode={isFavorite ? "outlined" : "contained"}
               icon={isFavorite ? "close" : "plus"}
@@ -129,9 +147,10 @@ const MovieDetailScreen = ({ navigation, route }: Props) => {
               onPress={favoriteHandler}
               accessibilityLabel="Add to Favorites"
               style={{
-                width: "90%",
+                width: "95%",
                 paddingVertical: 2,
                 borderColor: COLORS.secondary,
+                borderRadius: 12,
               }}
               labelStyle={{ fontSize: 18, fontWeight: "600" }}
             >

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import * as helperFunctions from '@/api/helper';
 
-function useApi<T extends keyof typeof helperFunctions>(fetch: T, ...params: any[]): {
+function useApi<T extends keyof typeof helperFunctions>(fetch: T, ...params: Parameters<typeof helperFunctions[T]>): {
   data: Awaited<ReturnType<typeof helperFunctions[T]>> | null;
   isLoading: boolean;
   error: Error | null;
