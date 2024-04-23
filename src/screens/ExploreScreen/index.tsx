@@ -38,6 +38,7 @@ const ExploreScreen = ({ navigation }: Props) => {
         flex: 1,
         marginBottom: 8,
         padding: 12,
+        paddingBottom: 52,
       }}
     >
       <View

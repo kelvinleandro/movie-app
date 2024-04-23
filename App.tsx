@@ -37,22 +37,9 @@ const Root = () => {
   const authCtx = useContext(AuthContext);
   const favCtx = useContext(FavoriteMoviesContext);
 
-  useEffect(() => {
-    SplashScreen.preventAutoHideAsync();
-  }, []);
-
   // useEffect(() => {
-  //   const loadData = async () => {
-  //     if (authCtx.isAuthenticated){
-  //       const userDoc = await getUserDoc(getCurrentUserUid());
-  //       const cloudMovies = await fetchMoviesByIds(userDoc.moviesId);
-  //       if (cloudMovies.length > 0) {
-  //         favCtx.setFavoriteMovies(cloudMovies);
-  //       }
-  //     }
-  //   }
-  //   loadData();
-  // }, [authCtx.isAuthenticated]);
+  //   SplashScreen.preventAutoHideAsync();
+  // }, []);
 
   useEffect(() => {
     const loadData = async () => {
@@ -70,7 +57,7 @@ const Root = () => {
         await loadData();
       }
       setIsTryingLogin(false);
-      SplashScreen.hideAsync();
+      // SplashScreen.hideAsync();
     }
     getToken();
   }, [authCtx.isAuthenticated]);
