@@ -36,11 +36,7 @@ const Root = () => {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
   const favCtx = useContext(FavoriteMoviesContext);
-
-  // useEffect(() => {
-  //   SplashScreen.preventAutoHideAsync();
-  // }, []);
-
+  
   useEffect(() => {
     const loadData = async () => {
       const userDoc = await getUserDoc(getCurrentUserUid());
@@ -49,15 +45,16 @@ const Root = () => {
         favCtx.setFavoriteMovies(cloudMovies);
       }
     }
-
+    
     const getToken = async () => {
+      SplashScreen.preventAutoHideAsync();
       const storedToken = await AsyncStorage.getItem("token");
       if (storedToken) {
         authCtx.authenticate(storedToken);
         await loadData();
       }
       setIsTryingLogin(false);
-      // SplashScreen.hideAsync();
+      SplashScreen.hideAsync();
     }
     getToken();
   }, [authCtx.isAuthenticated]);
