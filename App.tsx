@@ -8,7 +8,10 @@ import * as SplashScreen from "expo-splash-screen";
 
 import MainTab from "@/navigation/MainTab";
 import AuthStack from "@/navigation/AuthStack";
-import { FavoriteMoviesContext, FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
+import {
+  FavoriteMoviesContext,
+  FavoriteMoviesProvider,
+} from "@/context/FavoriteMoviesContext";
 import { AuthContext, AuthContextProvider } from "@/context/AuthContext";
 import COLORS from "@/constants/colors";
 import { getCurrentUserUid, getUserDoc } from "@/utils/firebase";
@@ -36,7 +39,7 @@ const Root = () => {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const authCtx = useContext(AuthContext);
   const favCtx = useContext(FavoriteMoviesContext);
-  
+
   useEffect(() => {
     const loadData = async () => {
       const userDoc = await getUserDoc(getCurrentUserUid());
@@ -44,8 +47,8 @@ const Root = () => {
       if (cloudMovies.length > 0) {
         favCtx.setFavoriteMovies(cloudMovies);
       }
-    }
-    
+    };
+
     const getToken = async () => {
       SplashScreen.preventAutoHideAsync();
       const storedToken = await AsyncStorage.getItem("token");
@@ -55,7 +58,7 @@ const Root = () => {
       }
       setIsTryingLogin(false);
       SplashScreen.hideAsync();
-    }
+    };
     getToken();
   }, [authCtx.isAuthenticated]);
 

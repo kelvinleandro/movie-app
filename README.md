@@ -1,4 +1,4 @@
-# Movie App
+# Movie App (ClapperFlix)
 
 A comprehensive React Native application for exploring movies, featuring authentication and user data storage using Firebase. Utilizes the TMDB API, styled with styled-components, and built with Expo and TypeScript. This app allows users to browse movies, view detailed information, and mark movies as favorites.
 

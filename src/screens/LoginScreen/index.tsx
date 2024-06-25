@@ -77,7 +77,7 @@ const LoginScreen = ({ navigation }: Props) => {
           }}
         />
 
-        <Text style={styles.screenTitle}>Login</Text>
+        <Text style={styles.screenTitle}>Welcome to ClapperFlix</Text>
 
         <FormInput
           control={control}
